@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Divine Grace School | School Blog</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#D1DFB2',secondary:'#4A6741'},borderRadius:{'none':'0px','sm':'8px',DEFAULT:'12px','md':'16px','lg':'20px','xl':'24px','2xl':'28px','3xl':'32px','full':'9999px','button':'12px'}}}}</script>
+<style>
+/* Font fallbacks - using system fonts that are available offline */
+body {
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+h1, h2, h3, h4, h5, h6 {
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+font-weight: 600;
+}
+.logo {
+font-family: cursive, "Comic Sans MS", "Brush Script MT", fantasy;
+}
+
+/* Icon replacements using CSS symbols and Unicode */
+.ri-search-line::before { content: "🔍"; font-size: 14px; }
+.ri-menu-line::before { content: "☰"; font-size: 18px; }
+.ri-arrow-right-line::before { content: "→"; font-size: 14px; }
+.ri-calendar-line::before { content: "📅"; font-size: 12px; }
+.ri-time-line::before { content: "🕐"; font-size: 12px; }
+.ri-map-pin-line::before { content: "📍"; font-size: 12px; }
+.ri-facebook-fill::before { content: "f"; background: currentColor; color: white; border-radius: 2px; padding: 2px; font-weight: bold; }
+.ri-twitter-x-fill::before { content: "𝕏"; font-weight: bold; }
+.ri-instagram-fill::before { content: "📷"; }
+.ri-youtube-fill::before { content: "▶"; background: currentColor; color: white; border-radius: 2px; padding: 2px; }
+.ri-heart-line::before { content: "♡"; }
+.ri-chat-1-line::before { content: "💬"; font-size: 12px; }
+.ri-phone-line::before { content: "📞"; font-size: 14px; }
+.ri-mail-line::before { content: "✉"; font-size: 14px; }
+.ri-arrow-up-line::before { content: "↑"; font-size: 16px; font-weight: bold; }
+
+/* Remove default icon styling */
+:where([class^="ri-"])::before {
+content: attr(data-icon);
+font-family: inherit;
+font-style: normal;
+font-weight: normal;
+}
+
+.event-date {
+position: relative;
+overflow: hidden;
+}
+.event-date::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(74, 103, 65, 0.1);
+z-index: -1;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+input[type="number"] {
+-moz-appearance: textfield;
+}
+.student-spotlight-scroll::-webkit-scrollbar {
+height: 6px;
+}
+.student-spotlight-scroll::-webkit-scrollbar-track {
+background: #f1f1f1;
+border-radius: 10px;
+}
+.student-spotlight-scroll::-webkit-scrollbar-thumb {
+background: #D1DFB2;
+border-radius: 10px;
+}
+.student-spotlight-scroll::-webkit-scrollbar-thumb:hover {
+background: #4A6741;
+}
+.custom-checkbox {
+display: flex;
+align-items: center;
+cursor: pointer;
+}
+.custom-checkbox input {
+position: absolute;
+opacity: 0;
+cursor: pointer;
+height: 0;
+width: 0;
+}
+.checkmark {
+height: 20px;
+width: 20px;
+background-color: #fff;
+border: 2px solid #D1DFB2;
+border-radius: 4px;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.custom-checkbox input:checked ~ .checkmark {
+background-color: #D1DFB2;
+}
+.checkmark:after {
+content: "";
+display: none;
+}
+.custom-checkbox input:checked ~ .checkmark:after {
+display: block;
+width: 6px;
+height: 10px;
+border: solid white;
+border-width: 0 2px 2px 0;
+transform: rotate(45deg);
+}
+.hero-section {
+background-image: url('images/COMPOUND.jpg');
+background-size: cover;
+background-position: center;
+}
+</style>
+</head>
+<body class="bg-gray-50">
+<!-- Header -->
+<header class="sticky top-0 z-50 bg-white shadow-sm">
+<div class="container mx-auto px-4 py-3 flex justify-between items-center">
+<div class="flex items-center">
+<a href="#" class="logo text-2xl font-bold text-gray-800">Divine Grace School</a>
+</div>
+<nav id="main-nav" class="hidden md:flex space-x-8">
+<a href="School-Home.html" class="font-medium text-primary hover:text-primary transition-colors">Home</a>
+<a href="School-News.html" class="font-medium text-gray-700 hover:text-primary transition-colors">News</a>
+<a href="School-Events.html" class="font-medium text-gray-700 hover:text-primary transition-colors">Events</a>
+<a href="school-academics.html" class="font-medium text-gray-700 hover:text-primary transition-colors">Academics</a>
+<a href="School-StudentLife.html" class="font-medium text-gray-700 hover:text-primary transition-colors">Student Life</a>
+<a href="School-Contact.html" class="font-medium text-gray-700 hover:text-primary transition-colors">Contact</a>
+</nav>
+<div class="flex items-center space-x-4">
+<div class="relative">
+<input type="text" placeholder="Search..." class="py-2 pl-10 pr-4 w-40 lg:w-64 rounded-full text-sm border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+<div class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 flex items-center justify-center text-gray-400">
+<i class="ri-search-line"></i>
+</div>
+</div>
+<button id="menu-button" class="md:hidden w-10 h-10 flex items-center justify-center text-gray-700">
+<i class="ri-menu-line text-xl"></i>
+</button>
+</div>
+</div>
+<!-- Mobile Menu Overlay -->
+<div id="mobile-menu-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden"></div>
+<!-- Mobile Menu -->
+<nav id="mobile-menu" class="fixed top-0 right-0 w-64 h-full bg-white shadow-lg z-50 transform translate-x-full transition-transform duration-300 ease-in-out md:hidden">
+    <div class="p-4 flex justify-end">
+        <button id="close-menu-button" class="text-gray-700 text-2xl">&times;</button>
+    </div>
+    <ul class="flex flex-col p-4 space-y-4">
+        <li><a href="School-Home.html" class="block font-medium text-gray-700 hover:text-primary transition-colors py-2">Home</a></li>
+        <li><a href="School-News.html" class="block font-medium text-gray-700 hover:text-primary transition-colors py-2">News</a></li>
+        <li><a href="School-Events.html" class="block font-medium text-gray-700 hover:text-primary transition-colors py-2">Events</a></li>
+        <li><a href="school-academics.html" class="block font-medium text-gray-700 hover:text-primary transition-colors py-2">Academics</a></li>
+        <li><a href="School-StudentLife.html" class="block font-medium text-gray-700 hover:text-primary transition-colors py-2">Student Life</a></li>
+        <li><a href="School-Contact.html" class="block font-medium text-gray-700 hover:text-primary transition-colors py-2">Contact</a></li>
+    </ul>
+</nav>
+</header>
+<!-- Hero Section -->
+<section class="hero-section relative">
+<div class="absolute inset-0 bg-gradient-to-r from-gray-900/70 to-gray-900/30"></div>
+<div class="container mx-auto px-4 py-24 md:py-32 relative z-10">
+<div class="max-w-2xl">
+<h1 class="text-4xl md:text-5xl font-bold text-white mb-6">Inspiring Excellence, Nurturing Futures</h1>
+<p class="text-xl text-white/90 mb-8">Discover the latest achievements, events, and stories from our vibrant school community.</p>
+<div class="flex flex-wrap gap-4">
+<a href="#" class="bg-primary text-gray-800 px-6 py-3 font-semibold !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all">Latest News</a>
+<a href="#" class="bg-white text-gray-800 px-6 py-3 font-semibold !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all">Upcoming Events</a>
+</div>
+</div>
+</div>
+</section>
+<!-- News & Updates -->
+<section class="py-16 bg-white">
+<div class="container mx-auto px-4">
+<div class="flex justify-between items-center mb-10">
+<h2 class="text-3xl font-bold text-gray-800">News & Updates</h2>
+<a href="#" class="flex items-center text-secondary font-medium hover:underline">
+View All News
+<div class="w-5 h-5 ml-1 flex items-center justify-center">
+<i class="ri-arrow-right-line"></i>
+</div>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- News Card 1 -->
+<div class="bg-white rounded shadow-md overflow-hidden transition-transform hover:shadow-lg hover:-translate-y-1">
+<div class="h-80 overflow-hidden">
+<img src="images/announcement flyer.jpg">
+</div>
+<div class="p-6">
+<div class="flex items-center text-sm text-gray-500 mb-2">
+<div class="w-4 h-4 flex items-center justify-center mr-1">
+<i class="ri-calendar-line"></i>
+</div>
+May 18, 2025
+</div>
+<h3 class="text-xl font-bold text-gray-800 mb-2">Best Performing Students over the year Awarded</h3>
+<p class="text-gray-600 mb-4">Three exceptional students from our Basic 6 have been selected and awarded for their exceptional academic performannces over the year.</p>
+<a href="#" class="text-secondary font-medium hover:underline flex items-center">
+Read More
+<div class="w-4 h-4 ml-1 flex items-center justify-center">
+<i class="ri-arrow-right-line"></i>
+</div>
+</a>
+</div>
+</div>
+<!-- News Card 2 -->
+<div class="bg-white rounded shadow-md overflow-hidden transition-transform hover:shadow-lg hover:-translate-y-1">
+<div class="h-80 overflow-hidden">
+<img src="images/basketball.jpg">
+</div>
+<div class="p-6">
+<div class="flex items-center text-sm text-gray-500 mb-2">
+<div class="w-4 h-4 flex items-center justify-center mr-1">
+<i class="ri-calendar-line"></i>
+</div>
+May 15, 2025
+</div>
+<h3 class="text-xl font-bold text-gray-800 mb-2">Basketball Team Wins Regional Championship</h3>
+<p class="text-gray-600 mb-4">Our Divine Grace School Eagles defeated Lincoln High in a thrilling overtime game, securing the regional title for the third consecutive year.</p>
+<a href="#" class="text-secondary font-medium hover:underline flex items-center">
+Read More
+<div class="w-4 h-4 ml-1 flex items-center justify-center">
+<i class="ri-arrow-right-line"></i>
+</div>
+</a>
+</div>
+</div>
+<!-- News Card 3 -->
+<div class="bg-white rounded shadow-md overflow-hidden transition-transform hover:shadow-lg hover:-translate-y-1">
+<div class="h-80 overflow-hidden">
+<img src="images/speech piano play.jpg">
+</div>
+<div class="p-6">
+<div class="flex items-center text-sm text-gray-500 mb-2">
+<div class="w-4 h-4 flex items-center justify-center mr-1">
+<i class="ri-calendar-line"></i>
+</div>
+May 10, 2025
+</div>
+<h3 class="text-xl font-bold text-gray-800 mb-2">Spring Musical "Into the Woods" Receives Standing Ovation</h3>
+<p class="text-gray-600 mb-4">The Drama Department's production captivated audiences with stunning performances, elaborate sets, and beautiful musical arrangements.</p>
+<a href="#" class="text-secondary font-medium hover:underline flex items-center">
+Read More
+<div class="w-4 h-4 ml-1 flex items-center justify-center">
+<i class="ri-arrow-right-line"></i>
+</div>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- student Spotlight -->
+<section class="py-16 bg-gray-50">
+<div class="container mx-auto px-4">
+<div class="flex justify-between items-center mb-10">
+<h2 class="text-3xl font-bold text-gray-800">Computing Club Spotlight</h2>
+<a href="#" class="flex items-center text-secondary font-medium hover:underline">
+View All Spotlights
+<div class="w-5 h-5 ml-1 flex items-center justify-center">
+<i class="ri-arrow-right-line"></i>
+</div>
+</a>
+</div>
+<div class="student-spotlight-scroll overflow-x-auto pb-4">
+<div class="flex space-x-6 min-w-max">
+<!-- Student 1 -->
+<div class="w-72 bg-white rounded shadow-md overflow-hidden">
+<div class="h-64 overflow-hidden">
+<img src="images/baaba2-2.jpg"></div>
+<div class="p-6">
+<h3 class="text-xl font-bold text-gray-800 mb-1">Andromeda Baaba Baiden</h3>
+<p class="text-gray-500 mb-3">Programmer/Developer, Computing Club</p>
+<p class="text-gray-600 mb-4">Programmer and Game developer at Divine Grace School, passionate about coding and problem-solving.</p>
+<div class="bg-primary/20 p-4 rounded italic text-gray-700">
+"My teachers inspired me to become a programmer, and I'm grateful for their guidance. I'm excited to continue learning and contributing to the school community."
+</div>
+</div>
+</div>
+<!-- Student 2 -->
+<div class="w-72 bg-white rounded shadow-md overflow-hidden">
+<div class="h-64 overflow-hidden">
+<img src="images/Nkotokante INC squad-14.jpg">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold text-gray-800 mb-1">Charles Koi</h3>
+<p class="text-gray-500 mb-3">UI/UX Designer, Computing Club</p>
+<p class="text-gray-600 mb-4">Framework designer at Divine Grace School Computing Club, skilled in UI/UX design and web development.</p>
+<div class="bg-primary/20 p-4 rounded italic text-gray-700">
+"UI/UX design is not just about aesthetics; it's about creating intuitive and user-friendly interfaces that enhance user experience."
+</div>
+</div>
+</div>
+<!-- Student 3 -->
+<div class="w-72 bg-white rounded shadow-md overflow-hidden">
+<div class="h-64 overflow-hidden">
+<img src="images/Nkotokante INC squad-8.jpg">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold text-gray-800 mb-1">Papakow Hayford</h3>
+<p class="text-gray-500 mb-3">Intellectual Gamer, Computing Club</p>
+<p class="text-gray-600 mb-4">Has longest gaming history in the school and won the best student award for 27 consecutive times since Basic 6.</p>
+<div class="bg-primary/20 p-4 rounded italic text-gray-700">
+"Gaming has not only opened my mind to new ideas but also enhanced my problem-solving skills which allowed me to excel in academics."
+</div>
+</div>
+</div>
+<!-- Student 4 -->
+<div class="w-72 bg-white rounded shadow-md overflow-hidden">
+<div class="h-64 overflow-hidden">
+<img src="images/Nkotokante INC squad-66.jpg">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold text-gray-800 mb-1">Abdul Latif Namiru</h3>
+<p class="text-gray-500 mb-3">Web Developer, Computing Club</p>
+<p class="text-gray-600 mb-4">Web developer at Divine Grace School Computing Club, skilled in front-end and back-end development.</p>
+<div class="bg-primary/20 p-4 rounded italic text-gray-700">
+"Balancing design and functionality is crucial for creating user-friendly and visually appealing websites."
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!--facilitator spotlight-->
+</section>
+<section class="py-16 bg-gray-50">
+<div class="container mx-auto px-4">
+<div class="flex justify-between items-center mb-10">
+<h2 class="text-3xl font-bold text-gray-800">Facilitator Spotlight</h2>
+<a href="#" class="flex items-center text-secondary font-medium hover:underline">
+View All Spotlights
+<div class="w-5 h-5 ml-1 flex items-center justify-center">
+<i class="ri-arrow-right-line"></i>
+</div>
+</a>
+</div>
+<div class="student-spotlight-scroll overflow-x-auto pb-4">
+<div class="flex space-x-6 min-w-max">
+<!-- facilitator 1 -->
+<div class="w-72 bg-white rounded shadow-md overflow-hidden">
+<div class="h-80 overflow-hidden">
+<img src="images/Nkotokante INC squad-399.jpg">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold text-gray-800 mb-1">Mr. Benjamin Kwuamey</h3>
+<p class="text-gray-500 mb-3">Computing Facilitator, Upper Primary Department</p>
+<p class="text-gray-600 mb-4">Institutor of the Computing Club and Head of Coding and Software Development.</p>
+<div class="bg-primary/20 p-4 rounded italic text-gray-700">
+"Facilitator Benjamin is a passionate educator who brings a unique perspective to the classroom and has a keen eye for young Technology inclined students."
+</div>
+</div>
+</div>
+<!-- facilitator 2 -->
+<div class="w-72 bg-white rounded shadow-md overflow-hidden">
+<div class="h-80 overflow-hidden">
+<img src="images/Nkotokante INC squad-.jpg">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold text-gray-800 mb-1">Monsieur Kofi Mawuena Halo</h3>
+<p class="text-gray-500 mb-3">French Facilitator, Junior High Department</p>
+<p class="text-600 mb-4">Founder of HM Graphics and Head of Videography</p>
+<div class="bg-primary/20 p-4 rounded italic text-gray-700">"Monsieur Halo is our dedicated videographer with expertise also in artwork designs and photo editing, he doubles as the our French Scholar in the Junior High Department."</div>
+</div>
+</div>
+<!-- facilitator 3 -->
+<div class="w-72 bg-white rounded shadow-md overflow-hidden">
+<div class="h-80 overflow-hidden">
+<img src="images/Nkotokante INC squad-45.jpg">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold text-gray-800 mb-1">Mr. Charles Delali Tsitey</h3>
+<p class="text-gray-500 mb-3">Computing Facilitator, Junior High Department</p>
+<p class="text-gray-600 mb-4">Founder of Klenam Designs and Head of Photography</p>
+<div class="bg-primary/20 p-4 rounded italic text-gray-700">
+"Facilitator Charles is a lovely tutor with vast knowledge in Photograghy-Designs with acute eye for business opportunities encouraging and equiping young minds with skills for wealth right after Junior High Education."
+</div>
+</div>
+</div>
+<!-- facilitator 4-->
+<div class="w-72 bg-white rounded shadow-md overflow-hidden">
+<div class="h-80 overflow-hidden">
+<img src="images/squad 02.jpg">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold text-gray-800 mb-1">Sophia Nguyen</h3>
+<p class="text-gray-500 mb-3">Sophomore, Art Department</p>
+<p class="text-gray-600 mb-4">Won the Regional Young Artists Competition and had her work displayed at the Metropolitan Museum.</p>
+<div class="bg-primary/20 p-4 rounded italic text-gray-700">
+"Art allows me to express my cultural heritage in ways words cannot. I'm grateful for the support."
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Upcoming Events -->
+<section class="py-16 bg-white">
+<div class="container mx-auto px-4">
+<div class="flex justify-between items-center mb-10">
+<h2 class="text-3xl font-bold text-gray-800">Upcoming Events</h2>
+<a href="#" class="flex items-center text-secondary font-medium hover:underline">
+View Full Calendar
+<div class="w-5 h-5 ml-1 flex items-center justify-center">
+<i class="ri-arrow-right-line"></i>
+</div>
+</a>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<div class="space-y-6">
+<!-- Event 1 -->
+<div class="flex bg-white rounded shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+<div class="event-date w-24 flex-shrink-0 flex flex-col items-center justify-center p-4 bg-primary/10">
+<span class="text-2xl font-bold text-gray-800">25</span>
+<span class="text-sm font-medium text-gray-600">MAY</span>
+</div>
+<div class="p-5 flex-grow">
+<h3 class="text-lg font-bold text-gray-800 mb-1">End of Year Art Exhibition</h3>
+<div class="flex items-center text-sm text-gray-500 mb-2">
+<div class="w-4 h-4 flex items-center justify-center mr-1">
+<i class="ri-time-line"></i>
+</div>
+3:00 PM - 6:00 PM
+<div class="w-4 h-4 flex items-center justify-center mx-1 ml-3">
+<i class="ri-map-pin-line"></i>
+</div>
+Main Gallery
+</div>
+<p class="text-gray-600 mb-3">Celebrating student artwork from all grades with special guest judges from local art colleges.</p>
+<a href="#" class="inline-block bg-primary text-gray-800 px-4 py-2 text-sm font-medium !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all">RSVP Now</a>
+</div>
+</div>
+<!-- Event 2 -->
+<div class="flex bg-white rounded shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+<div class="event-date w-24 flex-shrink-0 flex flex-col items-center justify-center p-4 bg-primary/10">
+<span class="text-2xl font-bold text-gray-800">27</span>
+<span class="text-sm font-medium text-gray-600">MAY</span>
+</div>
+<div class="p-5 flex-grow">
+<h3 class="text-lg font-bold text-gray-800 mb-1">Parent-Teacher Conference</h3>
+<div class="flex items-center text-sm text-gray-500 mb-2">
+<div class="w-4 h-4 flex items-center justify-center mr-1">
+<i class="ri-time-line"></i>
+</div>
+1:00 PM - 7:00 PM
+<div class="w-4 h-4 flex items-center justify-center mx-1 ml-3">
+<i class="ri-map-pin-line"></i>
+</div>
+All Classrooms
+</div>
+<p class="text-gray-600 mb-3">Schedule meetings with your child's teachers to discuss academic progress and end-of-year goals.</p>
+<a href="#" class="inline-block bg-primary text-gray-800 px-4 py-2 text-sm font-medium !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all">Schedule Meeting</a>
+</div>
+</div>
+<!-- Event 3 -->
+<div class="flex bg-white rounded shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+<div class="event-date w-24 flex-shrink-0 flex flex-col items-center justify-center p-4 bg-primary/10">
+<span class="text-2xl font-bold text-gray-800">30</span>
+<span class="text-sm font-medium text-gray-600">MAY</span>
+</div>
+<div class="p-5 flex-grow">
+<h3 class="text-lg font-bold text-gray-800 mb-1">Spring Sports Awards Ceremony</h3>
+<div class="flex items-center text-sm text-gray-500 mb-2">
+<div class="w-4 h-4 flex items-center justify-center mr-1">
+<i class="ri-time-line"></i>
+</div>
+6:00 PM - 8:30 PM
+<div class="w-4 h-4 flex items-center justify-center mx-1 ml-3">
+<i class="ri-map-pin-line"></i>
+</div>
+Auditorium
+</div>
+<p class="text-gray-600 mb-3">Celebrating our student athletes' achievements and recognizing outstanding performances.</p>
+<a href="#" class="inline-block bg-primary text-gray-800 px-4 py-2 text-sm font-medium !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all">Learn More</a>
+</div>
+</div>
+</div>
+<div class="bg-white rounded shadow-md p-6">
+<h3 class="text-xl font-bold text-gray-800 mb-6">May 2025</h3>
+<div class="grid grid-cols-7 gap-1 mb-4">
+<div class="text-center text-sm font-medium text-gray-500">Sun</div>
+<div class="text-center text-sm font-medium text-gray-500">Mon</div>
+<div class="text-center text-sm font-medium text-gray-500">Tue</div>
+<div class="text-center text-sm font-medium text-gray-500">Wed</div>
+<div class="text-center text-sm font-medium text-gray-500">Thu</div>
+<div class="text-center text-sm font-medium text-gray-500">Fri</div>
+<div class="text-center text-sm font-medium text-gray-500">Sat</div>
+</div>
+<div class="grid grid-cols-7 gap-1">
+<!-- Previous month -->
+<div class="h-12 flex items-center justify-center text-sm text-gray-400">27</div>
+<div class="h-12 flex items-center justify-center text-sm text-gray-400">28</div>
+<div class="h-12 flex items-center justify-center text-sm text-gray-400">29</div>
+<div class="h-12 flex items-center justify-center text-sm text-gray-400">30</div>
+<!-- Current month -->
+<div class="h-12 flex items-center justify-center text-sm">1</div>
+<div class="h-12 flex items-center justify-center text-sm">2</div>
+<div class="h-12 flex items-center justify-center text-sm">3</div>
+<div class="h-12 flex items-center justify-center text-sm">4</div>
+<div class="h-12 flex items-center justify-center text-sm">5</div>
+<div class="h-12 flex items-center justify-center text-sm">6</div>
+<div class="h-12 flex items-center justify-center text-sm">7</div>
+<div class="h-12 flex items-center justify-center text-sm">8</div>
+<div class="h-12 flex items-center justify-center text-sm">9</div>
+<div class="h-12 flex items-center justify-center text-sm">10</div>
+<div class="h-12 flex items-center justify-center text-sm">11</div>
+<div class="h-12 flex items-center justify-center text-sm">12</div>
+<div class="h-12 flex items-center justify-center text-sm">13</div>
+<div class="h-12 flex items-center justify-center text-sm">14</div>
+<div class="h-12 flex items-center justify-center text-sm">15</div>
+<div class="h-12 flex items-center justify-center text-sm">16</div>
+<div class="h-12 flex items-center justify-center text-sm">17</div>
+<div class="h-12 flex items-center justify-center text-sm">18</div>
+<div class="h-12 flex items-center justify-center text-sm">19</div>
+<div class="h-12 flex items-center justify-center text-sm">20</div>
+<div class="h-12 flex items-center justify-center text-sm bg-gray-100 rounded-full font-medium">21</div>
+<div class="h-12 flex items-center justify-center text-sm">22</div>
+<div class="h-12 flex items-center justify-center text-sm">23</div>
+<div class="h-12 flex items-center justify-center text-sm">24</div>
+<div class="h-12 flex items-center justify-center text-sm bg-primary rounded-full font-medium">25</div>
+<div class="h-12 flex items-center justify-center text-sm">26</div>
+<div class="h-12 flex items-center justify-center text-sm bg-primary rounded-full font-medium">27</div>
+<div class="h-12 flex items-center justify-center text-sm">28</div>
+<div class="h-12 flex items-center justify-center text-sm">29</div>
+<div class="h-12 flex items-center justify-center text-sm bg-primary rounded-full font-medium">30</div>
+<div class="h-12 flex items-center justify-center text-sm">31</div>
+</div>
+<div class="mt-6 space-y-2">
+<div class="flex items-center">
+<div class="w-3 h-3 rounded-full bg-primary mr-2"></div>
+<span class="text-sm text-gray-600">School Events</span>
+</div>
+<div class="flex items-center">
+<div class="w-3 h-3 rounded-full bg-gray-300 mr-2"></div>
+<span class="text-sm text-gray-600">Today</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Academic Highlights -->
+<section class="py-16 bg-gray-50">
+<div class="container mx-auto px-4">
+<h2 class="text-3xl font-bold text-gray-800 mb-10 text-center">Academic Highlights</h2>
+<!-- Highlight 1 -->
+<div class="flex flex-col md:flex-row items-center mb-16 bg-white rounded shadow-md overflow-hidden">
+<div class="md:w-1/2">
+<img src="images/ACADEMIC01.jpg">
+</div>
+<div class="md:w-1/2 p-8">
+<h3 class="text-2xl font-bold text-gray-800 mb-4">Robotics Team Qualifies for International Competition</h3>
+<p class="text-gray-600 mb-6">Our robotics team, the "Divine Grace School Innovators," has qualified for the International Robotics Championship in Tokyo after their innovative design won first place at the national level. The team of 12 students developed an autonomous robot that can assist in disaster recovery efforts.</p>
+<div class="grid grid-cols-2 gap-4 mb-6">
+<div class="bg-primary/10 p-4 rounded">
+<div class="text-2xl font-bold text-gray-800 mb-1">15+</div>
+<div class="text-sm text-gray-600">Awards Won</div>
+</div>
+<div class="bg-primary/10 p-4 rounded">
+<div class="text-2xl font-bold text-gray-800 mb-1">100%</div>
+<div class="text-sm text-gray-600">College Acceptance</div>
+</div>
+</div>
+<a href="#" class="inline-block bg-primary text-gray-800 px-6 py-3 font-semibold !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all">Learn More</a>
+</div>
+</div>
+<!-- Highlight 2 -->
+<div class="flex flex-col md:flex-row-reverse items-center bg-white rounded shadow-md overflow-hidden">
+<div class="md:w-1/2">
+<img src="images/ACADEMIC02.jpg">
+</div>
+<div class="md:w-1/2 p-8">
+<h3 class="text-2xl font-bold text-gray-800 mb-4">Debate Team Crowned State Champions</h3>
+<p class="text-gray-600 mb-6">Our debate team has won the State Championship for the second consecutive year. The team demonstrated exceptional research skills, critical thinking, and persuasive speaking on complex global issues including climate policy and international relations.</p>
+<div class="grid grid-cols-2 gap-4 mb-6">
+<div class="bg-primary/10 p-4 rounded">
+<div class="text-2xl font-bold text-gray-800 mb-1">24</div>
+<div class="text-sm text-gray-600">Debates Won</div>
+</div>
+<div class="bg-primary/10 p-4 rounded">
+<div class="text-2xl font-bold text-gray-800 mb-1">5</div>
+<div class="text-sm text-gray-600">State Titles</div>
+</div>
+</div>
+<a href="#" class="inline-block bg-primary text-gray-800 px-6 py-3 font-semibold !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all">Learn More</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Newsletter & Social Media -->
+<section class="py-16 bg-white">
+<div class="container mx-auto px-4">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+<!-- Newsletter -->
+<div class="bg-primary/10 rounded p-8">
+<h3 class="text-2xl font-bold text-gray-800 mb-4">Subscribe to Our Newsletter</h3>
+<p class="text-gray-600 mb-6">Stay updated with the latest news, events, and achievements from our school community.</p>
+<form class="space-y-4">
+<div>
+<label for="name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+<input type="text" id="name" class="w-full px-4 py-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Enter your name">
+</div>
+<div>
+<label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+<input type="email" id="email" class="w-full px-4 py-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Enter your email">
+</div>
+<div>
+<label class="custom-checkbox flex items-start">
+<input type="checkbox" class="mt-1">
+<span class="checkmark mt-1 mr-2"></span>
+<span class="text-sm text-gray-600">I am a parent/guardian and would like to receive updates about school events and activities.</span>
+</label>
+</div>
+<button type="submit" class="w-full bg-primary text-gray-800 px-6 py-3 font-semibold !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all">Subscribe Now</button>
+</form>
+</div>
+<!-- Social Media Feed -->
+<div>
+<h3 class="text-2xl font-bold text-gray-800 mb-6">Connect With Us</h3>
+<div class="flex space-x-4 mb-8">
+<a href="#" class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white">
+<i class="ri-facebook-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 rounded-full bg-sky-500 flex items-center justify-center text-white">
+<i class="ri-twitter-x-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 rounded-full bg-pink-600 flex items-center justify-center text-white">
+<i class="ri-instagram-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center text-white">
+<i class="ri-youtube-fill"></i>
+</a>
+</div>
+<div class="space-y-4">
+<!-- Social Post 1 -->
+<div class="bg-white border border-gray-200 rounded p-4">
+<div class="flex items-center mb-3">
+<div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white mr-3">
+<i class="ri-facebook-fill"></i>
+</div>
+<div>
+<div class="font-medium text-gray-800">Divine Grace School</div>
+<div class="text-xs text-gray-500">2 hours ago</div>
+</div>
+</div>
+<p class="text-gray-600 mb-3">Congratulations to our Graduants who have painstaked their way through the previous stage in their academic life. #DGSGRADUATION25</p>
+<div class="h-48 rounded overflow-hidden mb-3">
+<img src="images/CONGRATS01.jpg">
+</div>
+<div class="flex items-center text-sm text-gray-500">
+<div class="flex items-center mr-4">
+<div class="w-4 h-4 flex items-center justify-center mr-1">
+<i class="ri-heart-line"></i>
+</div>
+245 Likes
+</div>
+<div class="flex items-center">
+<div class="w-4 h-4 flex items-center justify-center mr-1">
+<i class="ri-chat-1-line"></i>
+</div>
+37 Comments
+</div>
+</div>
+</div>
+<!-- Social Post 2 -->
+<div class="bg-white border border-gray-200 rounded p-4">
+<div class="flex items-center mb-3">
+<div class="w-10 h-10 rounded-full bg-pink-600 flex items-center justify-center text-white mr-3">
+<i class="ri-instagram-fill"></i>
+</div>
+<div>
+<div class="font-medium text-gray-800">Divine Grace School</div>
+<div class="text-xs text-gray-500">Yesterday</div>
+</div>
+</div>
+<p class="text-gray-600 mb-3">Our Vacation celebration is happening with all glow and glamour with top performances coming from our best performers #DGSOURDAY</p>
+<div class="h-48 rounded overflow-hidden mb-3">
+<img src="images/performance.JPG">
+</div>
+<div class="flex items-center text-sm text-gray-500">
+<div class="flex items-center mr-4">
+<div class="w-4 h-4 flex items-center justify-center mr-1">
+<i class="ri-heart-line"></i>
+</div>
+312 Likes
+</div>
+<div class="flex items-center">
+<div class="w-4 h-4 flex items-center justify-center mr-1">
+<i class="ri-chat-1-1ine"></i>
+</div>
+42 Comments
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-gray-800 text-white pt-16 pb-8">
+<div class="container mx-auto px-4">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+<div>
+<a href="#" class="logo text-2xl font-bold text-white mb-4 inline-block">Divine Grace School</a>
+<p class="text-gray-300 mb-6">Inspiring excellence and nurturing futures since 2003. Committed to providing a comprehensive education that prepares students for success in college and beyond.</p>
+<div class="flex space-x-4">
+<a href="#" class="w-10 h-10 rounded-full border border-gray-600 flex items-center justify-center text-gray-300 hover:text-white hover:border-white transition-colors">
+<i class="ri-facebook-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 rounded-full border border-gray-600 flex items-center justify-center text-gray-300 hover:text-white hover:border-white transition-colors">
+<i class="ri-twitter-x-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 rounded-full border border-gray-600 flex items-center justify-center text-gray-300 hover:text-white hover:border-white transition-colors">
+<i class="ri-instagram-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 rounded-full border border-gray-600 flex items-center justify-center text-gray-300 hover:text-white hover:border-white transition-colors">
+<i class="ri-youtube-fill"></i>
+</a>
+</div>
+</div>
+<div>
+<h4 class="text-lg font-bold mb-4">Quick Links</h4>
+<ul class="space-y-2">
+<li><a href="#" class="text-gray-300 hover:text-white transition-colors">About Us</a></li>
+<li><a href="#" class="text-gray-300 hover:text-white transition-colors">Academics</a></li>
+<li><a href="#" class="text-gray-300 hover:text-white transition-colors">Admissions</a></li>
+<li><a href="#" class="text-gray-300 hover:text-white transition-colors">Athletics</a></li>
+<li><a href="#" class="text-gray-300 hover:text-white transition-colors">Arts</a></li>
+<li><a href="#" class="text-gray-300 hover:text-white transition-colors">Student Life</a></li>
+<li><a href="#" class="text-gray-300 hover:text-white transition-colors">Parent Resources</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-lg font-bold mb-4">Contact Us</h4>
+<ul class="space-y-3">
+<li class="flex">
+<div class="w-5 h-5 flex items-center justify-center mr-2 mt-1">
+<i class="ri-map-pin-line"></i>
+</div>
+<span class="text-gray-300">P.O Box WJ 145, Weija-Accra<br>SCC off Mallam Kasoa Highway</span>
+</li>
+<li class="flex">
+<div class="w-5 h-5 flex items-center justify-center mr-2">
+<i class="ri-phone-line"></i>
+</div>
+<span class="text-gray-300">020 798 5666 / 024 705 5879</span>
+</li>
+<li class="flex">
+<div class="w-5 h-5 flex items-center justify-center mr-2">
+<i class="ri-mail-line"></i>
+</div>
+<span class="text-gray-300">info@divinegraceschool.edu</span>
+</li>
+<li class="flex">
+<div class="w-5 h-5 flex items-center justify-center mr-2">
+<i class="ri-time-line"></i>
+</div>
+<span class="text-gray-300">Monday-Friday: 7:30 AM - 4:00 PM</span>
+</li>
+</ul>
+</div>
+<div>
+<h4 class="text-lg font-bold mb-4">Newsletter</h4>
+<p class="text-gray-300 mb-4">Subscribe to receive updates about school news and events.</p>
+<form class="space-y-3">
+<input type="email" placeholder="Your email address" class="w-full px-4 py-2 rounded bg-gray-700 border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+<button type="submit" class="w-full bg-primary text-gray-800 px-4 py-2 font-medium !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all">Subscribe</button>
+</form>
+</div>
+</div>
+<div class="pt-8 border-t border-gray-700 text-center text-gray-400 text-sm">
+<p>&copy; 2025 Divine Grace School. All rights reserved.</p>
+</div>
+</div>
+</footer>
+<!-- Back to Top Button -->
+<button id="backToTop" class="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-primary text-gray-800 shadow-lg flex items-center justify-center opacity-0 invisible transition-all duration-300">
+<i class="ri-arrow-up-line text-xl"></i>
+</button>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+// Back to Top Button
+const backToTopButton = document.getElementById('backToTop');
+window.addEventListener('scroll', function() {
+if (window.pageYOffset > 300) {
+backToTopButton.classList.remove('opacity-0', 'invisible');
+backToTopButton.classList.add('opacity-100', 'visible');
+} else {
+backToTopButton.classList.remove('opacity-100', 'visible');
+backToTopButton.classList.add('opacity-0', 'invisible');
+}
+});
+backToTopButton.addEventListener('click', function() {
+window.scrollTo({
+top: 0,
+behavior: 'smooth'
+});
+});
+
+// Custom Checkbox Functionality
+const checkboxes = document.querySelectorAll('.custom-checkbox input[type="checkbox"]');
+checkboxes.forEach(checkbox => {
+checkbox.addEventListener('change', function() {
+const checkmark = this.nextElementSibling;
+if (this.checked) {
+checkmark.classList.add('bg-primary');
+} else {
+checkmark.classList.remove('bg-primary');
+}
+});
+});
+
+// Mobile Menu Functionality (New Code)
+const menuButton = document.getElementById('menu-button');
+const mobileMenu = document.getElementById('mobile-menu');
+const closeMenuButton = document.getElementById('close-menu-button');
+const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+
+function openMobileMenu() {
+    mobileMenu.classList.remove('translate-x-full');
+    mobileMenu.classList.add('translate-x-0');
+    mobileMenuOverlay.classList.remove('hidden');
+    document.body.style.overflow = 'hidden'; // Prevent scrolling of main content
+}
+
+function closeMobileMenu() {
+    mobileMenu.classList.remove('translate-x-0');
+    mobileMenu.classList.add('translate-x-full');
+    mobileMenuOverlay.classList.add('hidden');
+    document.body.style.overflow = ''; // Re-enable scrolling
+}
+
+menuButton.addEventListener('click', openMobileMenu);
+closeMenuButton.addEventListener('click', closeMobileMenu);
+mobileMenuOverlay.addEventListener('click', closeMobileMenu); // Close when clicking outside
+});
+</script>
+</body>
+</html>

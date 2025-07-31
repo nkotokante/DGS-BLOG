@@ -1,0 +1,1407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Divine Grace School | School Blog</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#D1DFB2',secondary:'#4A6741'},borderRadius:{'none':'0px','sm':'8px',DEFAULT:'12px','md':'16px','lg':'20px','xl':'24px','2xl':'28px','3xl':'32px','full':'9999px','button':'12px'}}}}</script>
+<style>
+/* Font fallbacks - using system fonts that are available offline */
+body {
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+h1, h2, h3, h4, h5, h6 {
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+font-weight: 600;
+}
+.logo {
+font-family: cursive, "Comic Sans MS", "Brush Script MT", fantasy;
+}
+
+/* Icon replacements using CSS symbols and Unicode */
+.ri-search-line::before { content: "🔍"; font-size: 14px; }
+.ri-menu-line::before { content: "☰"; font-size: 18px; }
+.ri-arrow-right-line::before { content: "→"; font-size: 14px; }
+.ri-calendar-line::before { content: "📅"; font-size: 12px; }
+.ri-time-line::before { content: "🕐"; font-size: 12px; }
+.ri-map-pin-line::before { content: "📍"; font-size: 12px; }
+.ri-facebook-fill::before { content: "f"; background: currentColor; color: white; border-radius: 2px; padding: 2px; font-weight: bold; }
+.ri-twitter-x-fill::before { content: "𝕏"; font-weight: bold; }
+.ri-instagram-fill::before { content: "📷"; }
+.ri-youtube-fill::before { content: "▶"; background: currentColor; color: white; border-radius: 2px; padding: 2px; }
+.ri-heart-line::before { content: "♡"; }
+.ri-chat-1-line::before { content: "💬"; font-size: 12px; }
+.ri-phone-line::before { content: "📞"; font-size: 14px; }
+.ri-mail-line::before { content: "✉"; font-size: 14px; }
+.ri-arrow-up-line::before { content: "↑"; font-size: 16px; font-weight: bold; }
+
+/* Remove default icon styling */
+:where([class^="ri-"])::before {
+content: attr(data-icon);
+font-family: inherit;
+font-style: normal;
+font-weight: normal;
+}
+
+.event-date {
+position: relative;
+overflow: hidden;
+}
+.event-date::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(74, 103, 65, 0.1);
+z-index: -1;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+input[type="number"] {
+-moz-appearance: textfield;
+}
+.student-spotlight-scroll::-webkit-scrollbar {
+height: 6px;
+}
+.student-spotlight-scroll::-webkit-scrollbar-track {
+background: #f1f1f1;
+border-radius: 10px;
+}
+.student-spotlight-scroll::-webkit-scrollbar-thumb {
+background: #D1DFB2;
+border-radius: 10px;
+}
+.student-spotlight-scroll::-webkit-scrollbar-thumb:hover {
+background: #4A6741;
+}
+.custom-checkbox {
+display: flex;
+align-items: center;
+cursor: pointer;
+}
+.custom-checkbox input {
+position: absolute;
+opacity: 0;
+cursor: pointer;
+height: 0;
+width: 0;
+}
+.checkmark {
+height: 20px;
+width: 20px;
+background-color: #fff;
+border: 2px solid #D1DFB2;
+border-radius: 4px;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.custom-checkbox input:checked ~ .checkmark {
+background-color: #D1DFB2;
+}
+.checkmark:after {
+content: "";
+display: none;
+}
+.custom-checkbox input:checked ~ .checkmark:after {
+display: block;
+width: 6px;
+height: 10px;
+border: solid white;
+border-width: 0 2px 2px 0;
+transform: rotate(45deg);
+}
+.hero-section {
+background-image: url('images/COMPOUND.jpg');
+background-size: cover;
+background-position: center;
+}
+</style>
+</head>
+<body class="bg-gray-50">
+<!-- Header -->
+<header class="sticky top-0 z-50 bg-white shadow-sm">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+        <div class="flex items-center">
+            <a href="https://readdy.ai/home/4a82f365-11eb-4d2e-a155-c3f400f1fb02/907f27e5-615c-4a88-93dc-b35558c795d6" data-readdy="true" class="logo text-2xl font-bold text-gray-800">Divine Grace School</a>
+        </div>
+<nav id="main-nav" class="hidden md:flex space-x-8">
+<a href="School-Home.html" class="font-medium text-gray-700 hover:text-primary transition-colors">Home</a>
+<a href="School-News.html" class="font-medium text-gray-700 hover:text-primary transition-colors">News</a>
+<a href="School-Events.html" class="font-medium text-primary hover:text-primary transition-colors">Events</a>
+<a href="school-academics.html" class="font-medium text-gray-700 hover:text-primary transition-colors">Academics</a>
+<a href="School-StudentLife.html" class="font-medium text-gray-700 hover:text-primary transition-colors">Student Life</a>
+<a href="School-Contact.html" class="font-medium text-gray-700 hover:text-primary transition-colors">Contact</a>
+</nav>
+        <div class="flex items-center space-x-4">
+            <div class="relative">
+                <input type="text" placeholder="Search..." class="py-2 pl-10 pr-4 w-40 lg:w-64 rounded-full text-sm border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                <div class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 flex items-center justify-center text-gray-400">
+                    <i class="ri-search-line"></i>
+                </div>
+            </div>
+            <button id="menu-button" class="md:hidden w-10 h-10 flex items-center justify-center text-gray-700">
+                <i class="ri-menu-line text-xl"></i>
+            </button>
+        </div>
+    </div>
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden"></div>
+    <!-- Mobile Menu -->
+    <nav id="mobile-menu" class="fixed top-0 right-0 w-64 h-full bg-white shadow-lg z-50 transform translate-x-full transition-transform duration-300 ease-in-out md:hidden">
+        <div class="p-4 flex justify-end">
+            <button id="close-menu-button" class="text-gray-700 text-2xl">&times;</button>
+        </div>
+        <ul class="flex flex-col p-4 space-y-4">
+            <li><a href="School-Home.html" class="block font-medium text-gray-700 hover:text-primary transition-colors py-2">Home</a></li>
+            <li><a href="School-News.html" class="block font-medium text-gray-700 hover:text-primary transition-colors py-2">News</a></li>
+            <li><a href="School-Events.html" class="block font-medium text-gray-700 hover:text-primary transition-colors py-2">Events</a></li>
+            <li><a href="school-academics.html" class="block font-medium text-gray-700 hover:text-primary transition-colors py-2">Academics</a></li>
+            <li><a href="School-StudentLife.html" class="block font-medium text-gray-700 hover:text-primary transition-colors py-2">Student Life</a></li>
+            <li><a href="School-Contact.html" class="block font-medium text-gray-700 hover:text-primary transition-colors py-2">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Breadcrumb -->
+<div class="bg-white border-b border-gray-200">
+    <div class="container mx-auto px-4 py-3">
+        <div class="flex items-center text-sm">
+            <a href="https://readdy.ai/home/4a82f365-11eb-4d2e-a155-c3f400f1fb02/907f27e5-615c-4a88-93dc-b35558c795d6" data-readdy="true" class="text-gray-500 hover:text-primary transition-colors">Home</a>
+            <div class="w-4 h-4 flex items-center justify-center text-gray-400 mx-1">
+                <i class="ri-arrow-right-s-line"></i>
+            </div>
+            <span class="text-gray-800 font-medium">Events</span>
+        </div>
+    </div>
+</div>
+
+<!-- Featured Events Slider -->
+<section class="py-8 bg-white">
+    <div class="container mx-auto px-4">
+        <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-8">School Events</h1>
+        <div class="featured-events-slider relative rounded-lg overflow-hidden shadow-lg mb-12">
+            <!-- Featured Event Item 1 (Active) -->
+            <div class="featured-slide active relative">
+                <div class="h-[450px] relative">
+                    <img src="images/CONGRATS01.jpg" alt="Graduation Ceremony" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6 md:p-10">
+                        <div class="inline-block bg-primary px-3 py-1 rounded-full text-sm font-medium text-gray-800 mb-3">Ceremony</div>
+                        <h2 class="text-2xl md:text-3xl font-bold text-white mb-3">Class of 2025 Graduation Ceremony</h2>
+                        <p class="text-white/90 mb-4 max-w-3xl">Join us as we celebrate the achievements of our graduating seniors. The ceremony will feature keynote speaker Dr. James Wilson, renowned educator and Divine Grace School Academy alumnus.</p>
+                        <div class="flex flex-wrap gap-4 mb-4">
+                            <div class="flex items-center text-white/80 text-sm">
+                                <div class="w-4 h-4 flex items-center justify-center mr-1">
+                                    <i class="ri-calendar-line"></i>
+                                </div>
+                                June 15, 2025
+                            </div>
+                            <div class="flex items-center text-white/80 text-sm">
+                                <div class="w-4 h-4 flex items-center justify-center mr-1">
+                                    <i class="ri-time-line"></i>
+                                </div>
+                                10:00 AM - 12:30 PM
+                            </div>
+                            <div class="flex items-center text-white/80 text-sm">
+                                <div class="w-4 h-4 flex items-center justify-center mr-1">
+                                    <i class="ri-map-pin-line"></i>
+                                </div>
+                                Main Auditorium
+                            </div>
+                        </div>
+                        <a href="#" class="inline-block bg-white text-gray-800 px-6 py-3 font-semibold !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all">Join Us Celebrate</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Slider dots -->
+            <div class="slider-dots">
+                <div class="dot active"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Event View Options and Filters -->
+<section class="py-6 bg-gray-50 border-t border-b border-gray-200">
+    <div class="container mx-auto px-4">
+        <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+            <!-- View Toggle -->
+            <div class="flex items-center space-x-2">
+                <h3 class="text-lg font-semibold text-gray-800">View:</h3>
+                <div class="flex rounded-full bg-gray-100 p-1">
+                    <button id="listViewBtn" class="view-toggle-button active rounded-full px-4 py-2 flex items-center space-x-2 whitespace-nowrap">
+                        <div class="w-4 h-4 flex items-center justify-center">
+                            <i class="ri-list-check"></i>
+                        </div>
+                        <span>List</span>
+                    </button>
+                    <button id="calendarViewBtn" class="view-toggle-button rounded-full px-4 py-2 flex items-center space-x-2 whitespace-nowrap">
+                        <div class="w-4 h-4 flex items-center justify-center">
+                            <i class="ri-calendar-line"></i>
+                        </div>
+                        <span>Calendar</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="flex items-center space-x-4">
+                <h3 class="text-lg font-semibold text-gray-800">Filter By:</h3>
+                <!-- Category Dropdown -->
+                <div class="dropdown relative">
+                    <button class="bg-white border border-gray-300 rounded px-4 py-2 flex items-center space-x-2 hover:border-primary transition-colors">
+                        <span class="text-gray-700">Category</span>
+                        <div class="w-4 h-4 flex items-center justify-center text-gray-500">
+                            <i class="ri-arrow-down-s-line"></i>
+                        </div>
+                    </button>
+                    <div class="dropdown-content mt-1">
+                        <div class="p-3">
+                            <div class="mb-2 pb-2 border-b border-gray-100">
+                                <label class="custom-radio flex items-center py-1">
+                                    <input type="radio" name="category" value="all" checked>
+                                    <span class="radio-mark mr-2"></span>
+                                    <span class="text-gray-700">All Categories</span>
+                                </label>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="custom-radio flex items-center py-1">
+                                    <input type="radio" name="category" value="academic">
+                                    <span class="radio-mark mr-2"></span>
+                                    <span class="text-gray-700">Academic</span>
+                                </label>
+                                <label class="custom-radio flex items-center py-1">
+                                    <input type="radio" name="category" value="sports">
+                                    <span class="radio-mark mr-2"></span>
+                                    <span class="text-gray-700">Sports</span>
+                                </label>
+                                <label class="custom-radio flex items-center py-1">
+                                    <input type="radio" name="category" value="arts">
+                                    <span class="radio-mark mr-2"></span>
+                                    <span class="text-gray-700">Arts & Culture</span>
+                                </label>
+                                <label class="custom-radio flex items-center py-1">
+                                    <input type="radio" name="category" value="community">
+                                    <span class="radio-mark mr-2"></span>
+                                    <span class="text-gray-700">Community</span>
+                                </label>
+                                <label class="custom-radio flex items-center py-1">
+                                    <input type="radio" name="category" value="ceremony">
+                                    <span class="radio-mark mr-2"></span>
+                                    <span class="text-gray-700">Ceremony</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Date Range Dropdown -->
+                <div class="dropdown relative">
+                    <button class="bg-white border border-gray-300 rounded px-4 py-2 flex items-center space-x-2 hover:border-primary transition-colors">
+                        <span class="text-gray-700">Date</span>
+                        <div class="w-4 h-4 flex items-center justify-center text-gray-500">
+                            <i class="ri-arrow-down-s-line"></i>
+                        </div>
+                    </button>
+                    <div class="dropdown-content mt-1">
+                        <div class="p-3">
+                            <div class="space-y-2">
+                                <label class="custom-radio flex items-center py-1">
+                                    <input type="radio" name="date" value="all" checked>
+                                    <span class="radio-mark mr-2"></span>
+                                    <span class="text-gray-700">All Time</span>
+                                </label>
+                                <label class="custom-radio flex items-center py-1">
+                                    <input type="radio" name="date" value="today">
+                                    <span class="radio-mark mr-2"></span>
+                                    <span class="text-gray-700">Today</span>
+                                </label>
+                                <label class="custom-radio flex items-center py-1">
+                                    <input type="radio" name="date" value="week">
+                                    <span class="radio-mark mr-2"></span>
+                                    <span class="text-gray-700">This Week</span>
+                                </label>
+                                <label class="custom-radio flex items-center py-1">
+                                    <input type="radio" name="date" value="month">
+                                    <span class="radio-mark mr-2"></span>
+                                    <span class="text-gray-700">This Month</span>
+                                </label>
+                                <label class="custom-radio flex items-center py-1">
+                                    <input type="radio" name="date" value="custom">
+                                    <span class="radio-mark mr-2"></span>
+                                    <span class="text-gray-700">Custom Range</span>
+                                </label>
+                            </div>
+                            <div class="mt-3 pt-3 border-t border-gray-100 hidden" id="customDateRange">
+                                <div class="space-y-2">
+                                    <div>
+                                        <label class="text-sm text-gray-600 block mb-1">Start Date</label>
+                                        <input type="date" class="w-full px-3 py-2 border border-gray-300 rounded text-sm">
+                                    </div>
+                                    <div>
+                                        <label class="text-sm text-gray-600 block mb-1">End Date</label>
+                                        <input type="date" class="w-full px-3 py-2 border border-gray-300 rounded text-sm">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Search Input -->
+                <div class="relative">
+                    <input type="text" placeholder="Search events..." class="py-2 pl-10 pr-4 w-40 lg:w-64 rounded text-sm border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                    <div class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 flex items-center justify-center text-gray-400">
+                        <i class="ri-search-line"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Toggle Past Events -->
+            <div class="flex items-center space-x-3">
+                <span class="text-gray-700">Show Past Events</span>
+                <label class="custom-switch">
+                    <input type="checkbox" id="showPastEvents">
+                    <span class="switch-slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Category Pills -->
+        <div class="category-filter flex items-center space-x-2 mt-4 overflow-x-auto pb-2">
+            <button class="bg-primary text-gray-800 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap">All</button>
+            <button class="bg-white text-gray-700 hover:bg-gray-100 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap">Academic</button>
+            <button class="bg-white text-gray-700 hover:bg-gray-100 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap">Sports</button>
+            <button class="bg-white text-gray-700 hover:bg-gray-100 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap">Arts & Culture</button>
+            <button class="bg-white text-gray-700 hover:bg-gray-100 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap">Community</button>
+            <button class="bg-white text-gray-700 hover:bg-gray-100 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap">Ceremony</button>
+            <button class="bg-white text-gray-700 hover:bg-gray-100 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap">Parent-Teacher</button>
+            <button class="bg-white text-gray-700 hover:bg-gray-100 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap">Extracurricular</button>
+        </div>
+    </div>
+</section>
+
+<!-- Main Content -->
+<section class="py-12 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Events Content -->
+            <div class="lg:w-3/4">
+                <!-- List View (Default) -->
+                <div id="listView" class="block">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Event Card 1 -->
+                        <div class="bg-white rounded shadow-md overflow-hidden transition-transform hover:shadow-lg hover:-translate-y-1">
+                            <div class="h-48 overflow-hidden">
+                                <img src="images/announcement flyer.jpg">
+                            </div>
+                            <div class="p-6">
+                                <div class="inline-block bg-primary/20 px-2 py-1 rounded text-xs font-medium text-gray-800 mb-2">Ceremony</div>
+                                <h3 class="text-xl font-bold text-gray-800 mb-2">Class of 2025 Graduation Ceremony</h3>
+                                <div class="space-y-2 mb-4">
+                                    <div class="flex items-center text-sm text-gray-600">
+                                        <div class="w-4 h-4 flex items-center justify-center mr-2">
+                                            <i class="ri-calendar-line"></i>
+                                        </div>
+                                        August 1, 2025
+                                    </div>
+                                    <div class="flex items-center text-sm text-gray-600">
+                                        <div class="w-4 h-4 flex items-center justify-center mr-2">
+                                            <i class="ri-time-line"></i>
+                                        </div>
+                                        10:00 AM - 12:30 PM
+                                    </div>
+                                    <div class="flex items-center text-sm text-gray-600">
+                                        <div class="w-4 h-4 flex items-center justify-center mr-2">
+                                            <i class="ri-map-pin-line"></i>
+                                        </div>
+                                        Main Auditorium
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <a href="#" class="bg-primary text-gray-800 px-4 py-2 text-sm font-medium !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all">Register</a>
+                                    <div class="flex space-x-2">
+                                        <button class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-200 transition-colors">
+                                            <i class="ri-calendar-2-line"></i>
+                                        </button>
+                                        <button class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-200 transition-colors">
+                                            <i class="ri-share-line"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Event Card 2 -->
+                        <div class="bg-white rounded shadow-md overflow-hidden transition-transform hover:shadow-lg hover:-translate-y-1">
+                            <div class="h-48 overflow-hidden">
+                                <img src="images/summer class 2025.jpg" alt="Science Fair" class="w-full h-full object-cover object-top">
+                            </div>
+                            <div class="p-6">
+                                <div class="inline-block bg-primary/20 px-2 py-1 rounded text-xs font-medium text-gray-800 mb-2">Academic</div>
+                                <h3 class="text-xl font-bold text-gray-800 mb-2">Summer Class 2025</h3>
+                                <div class="space-y-2 mb-4">
+                                    <div class="flex items-center text-sm text-gray-600">
+                                        <div class="w-4 h-4 flex items-center justify-center mr-2">
+                                            <i class="ri-calendar-line"></i>
+                                        </div>
+                                        August 11, 2025
+                                    </div>
+                                    <div class="flex items-center text-sm text-gray-600">
+                                        <div class="w-4 h-4 flex items-center justify-center mr-2">
+                                            <i class="ri-time-line"></i>
+                                        </div>
+                                        9:00 AM - 1:00 PM
+                                    </div>
+                                    <div class="flex items-center text-sm text-gray-600">
+                                        <div class="w-4 h-4 flex items-center justify-center mr-2">
+                                            <i class="ri-map-pin-line"></i>
+                                        </div>
+                                        School Campus
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <a href="#" class="bg-primary text-gray-800 px-4 py-2 text-sm font-medium !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all">Details</a>
+                                    <div class="flex space-x-2">
+                                        <button class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-200 transition-colors">
+                                            <i class="ri-calendar-2-line"></i>
+                                        </button>
+                                        <button class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-200 transition-colors">
+                                            <i class="ri-share-line"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Event Card 3 -->
+                        <div class="bg-white rounded shadow-md overflow-hidden transition-transform hover:shadow-lg hover:-translate-y-1">
+                            <div class="h-48 overflow-hidden">
+                                <img src="https://readdy.ai/api/search-image?query=high%2520school%2520musical%2520performance%2520on%2520stage%252C%2520colorful%2520costumes%2520and%2520set%2520design%252C%2520students%2520performing%252C%2520stage%2520lighting%252C%2520school%2520auditorium%2520setting%252C%2520audience%2520in%2520foreground%252C%2520professional%2520theater%2520photography&width=600&height=400&seq=4&orientation=landscape" alt="Spring Musical" class="w-full h-full object-cover object-top">
+                            </div>
+                            <div class="p-6">
+                                <div class="inline-block bg-primary/20 px-2 py-1 rounded text-xs font-medium text-gray-800 mb-2">Arts</div>
+                                <h3 class="text-xl font-bold text-gray-800 mb-2">Spring Musical: "The Sound of Music"</h3>
+                                <div class="space-y-2 mb-4">
+                                    <div class="flex items-center text-sm text-gray-600">
+                                        <div class="w-4 h-4 flex items-center justify-center mr-2">
+                                            <i class="ri-calendar-line"></i>
+                                        </div>
+                                        May 25-27, 2025
+                                    </div>
+                                    <div class="flex items-center text-sm text-gray-600">
+                                        <div class="w-4 h-4 flex items-center justify-center mr-2">
+                                            <i class="ri-time-line"></i>
+                                        </div>
+                                        7:00 PM - 9:30 PM
+                                    </div>
+                                    <div class="flex items-center text-sm text-gray-600">
+                                        <div class="w-4 h-4 flex items-center justify-center mr-2">
+                                            <i class="ri-map-pin-line"></i>
+                                        </div>
+                                        Performing Arts Center
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <a href="#" class="bg-primary text-gray-800 px-4 py-2 text-sm font-medium !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all">Buy Tickets</a>
+                                    <div class="flex space-x-2">
+                                        <button class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-200 transition-colors">
+                                            <i class="ri-calendar-2-line"></i>
+                                        </button>
+                                        <button class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-200 transition-colors">
+                                            <i class="ri-share-line"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Event Card 4 -->
+                        <div class="bg-white rounded shadow-md overflow-hidden transition-transform hover:shadow-lg hover:-translate-y-1">
+                            <div class="h-48 overflow-hidden">
+                                <img src="https://readdy.ai/api/search-image?query=high%2520school%2520sports%2520championship%2520game%252C%2520basketball%2520court%252C%2520players%2520in%2520action%252C%2520cheering%2520crowd%252C%2520school%2520gymnasium%2520setting%252C%2520team%2520colors%252C%2520professional%2520sports%2520photography%252C%2520dynamic%2520action%2520shot&width=600&height=400&seq=5&orientation=landscape" alt="Basketball Championship" class="w-full h-full object-cover object-top">
+                            </div>
+                            <div class="p-6">
+                                <div class="inline-block bg-primary/20 px-2 py-1 rounded text-xs font-medium text-gray-800 mb-2">Sports</div>
+                                <h3 class="text-xl font-bold text-gray-800 mb-2">Basketball Championship Finals</h3>
+                                <div class="space-y-2 mb-4">
+                                    <div class="flex items-center text-sm text-gray-600">
+                                        <div class="w-4 h-4 flex items-center justify-center mr-2">
+                                            <i class="ri-calendar-line"></i>
+                                        </div>
+                                        May 24, 2025
+                                    </div>
+                                    <div class="flex items-center text-sm text-gray-600">
+                                        <div class="w-4 h-4 flex items-center justify-center mr-2">
+                                            <i class="ri-time-line"></i>
+                                        </div>
+                                        6:00 PM - 8:00 PM
+                                    </div>
+                                    <div class="flex items-center text-sm text-gray-600">
+                                        <div class="w-4 h-4 flex items-center justify-center mr-2">
+                                            <i class="ri-map-pin-line"></i>
+                                        </div>
+                                        Main Gymnasium
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <a href="#" class="bg-primary text-gray-800 px-4 py-2 text-sm font-medium !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all">Get Tickets</a>
+                                    <div class="flex space-x-2">
+                                        <button class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-200 transition-colors">
+                                            <i class="ri-calendar-2-line"></i>
+                                        </button>
+                                        <button class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-200 transition-colors">
+                                            <i class="ri-share-line"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Event Card 5 -->
+                        <div class="bg-white rounded shadow-md overflow-hidden transition-transform hover:shadow-lg hover:-translate-y-1">
+                            <div class="h-48 overflow-hidden">
+                                <img src="https://readdy.ai/api/search-image?query=parent%2520teacher%2520conference%2520in%2520high%2520school%2520classroom%252C%2520teacher%2520discussing%2520with%2520parents%252C%2520student%2520portfolios%2520and%2520work%2520samples%2520displayed%252C%2520classroom%2520setting%252C%2520professional%2520educational%2520photography%252C%2520natural%2520lighting&width=600&height=400&seq=6&orientation=landscape" alt="Parent-Teacher Conference" class="w-full h-full object-cover object-top">
+                            </div>
+                            <div class="p-6">
+                                <div class="inline-block bg-primary/20 px-2 py-1 rounded text-xs font-medium text-gray-800 mb-2">Parent-Teacher</div>
+                                <h3 class="text-xl font-bold text-gray-800 mb-2">Spring Parent-Teacher Conferences</h3>
+                                <div class="space-y-2 mb-4">
+                                    <div class="flex items-center text-sm text-gray-600">
+                                        <div class="w-4 h-4 flex items-center justify-center mr-2">
+                                            <i class="ri-calendar-line"></i>
+                                        </div>
+                                        May 22-23, 2025
+                                    </div>
+                                    <div class="flex items-center text-sm text-gray-600">
+                                        <div class="w-4 h-4 flex items-center justify-center mr-2">
+                                            <i class="ri-time-line"></i>
+                                        </div>
+                                        3:00 PM - 8:00 PM
+                                    </div>
+                                    <div class="flex items-center text-sm text-gray-600">
+                                        <div class="w-4 h-4 flex items-center justify-center mr-2">
+                                            <i class="ri-map-pin-line"></i>
+                                        </div>
+                                        Individual Classrooms
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <a href="#" class="bg-primary text-gray-800 px-4 py-2 text-sm font-medium !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all">Schedule</a>
+                                    <div class="flex space-x-2">
+                                        <button class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-200 transition-colors">
+                                            <i class="ri-calendar-2-line"></i>
+                                        </button>
+                                        <button class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-200 transition-colors">
+                                            <i class="ri-share-line"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Event Card 6 -->
+                        <div class="bg-white rounded shadow-md overflow-hidden transition-transform hover:shadow-lg hover:-translate-y-1">
+                            <div class="h-48 overflow-hidden">
+                                <img src="https://readdy.ai/api/search-image?query=high%2520school%2520community%2520service%2520project%252C%2520students%2520cleaning%2520park%252C%2520planting%2520trees%252C%2520diverse%2520group%2520of%2520students%2520working%2520together%252C%2520outdoor%2520setting%252C%2520professional%2520educational%2520photography%252C%2520natural%2520lighting&width=600&height=400&seq=7&orientation=landscape" alt="Community Service Day" class="w-full h-full object-cover object-top">
+                            </div>
+                            <div class="p-6">
+                                <div class="inline-block bg-primary/20 px-2 py-1 rounded text-xs font-medium text-gray-800 mb-2">Community</div>
+                                <h3 class="text-xl font-bold text-gray-800 mb-2">Community Service Day</h3>
+                                <div class="space-y-2 mb-4">
+                                    <div class="flex items-center text-sm text-gray-600">
+                                        <div class="w-4 h-4 flex items-center justify-center mr-2">
+                                            <i class="ri-calendar-line"></i>
+                                        </div>
+                                        May 21, 2025
+                                    </div>
+                                    <div class="flex items-center text-sm text-gray-600">
+                                        <div class="w-4 h-4 flex items-center justify-center mr-2">
+                                            <i class="ri-time-line"></i>
+                                        </div>
+                                        8:00 AM - 2:00 PM
+                                    </div>
+                                    <div class="flex items-center text-sm text-gray-600">
+                                        <div class="w-4 h-4 flex items-center justify-center mr-2">
+                                            <i class="ri-map-pin-line"></i>
+                                        </div>
+                                        Various Locations
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <a href="#" class="bg-primary text-gray-800 px-4 py-2 text-sm font-medium !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all">Volunteer</a>
+                                    <div class="flex space-x-2">
+                                        <button class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-200 transition-colors">
+                                            <i class="ri-calendar-2-line"></i>
+                                        </button>
+                                        <button class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-200 transition-colors">
+                                            <i class="ri-share-line"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Event Card 7 -->
+                        <div class="bg-white rounded shadow-md overflow-hidden transition-transform hover:shadow-lg hover:-translate-y-1">
+                            <div class="h-48 overflow-hidden">
+                                <img src="https://readdy.ai/api/search-image?query=college%2520fair%2520at%2520high%2520school%252C%2520university%2520representatives%2520at%2520booths%252C%2520students%2520gathering%2520information%252C%2520school%2520gymnasium%2520setting%252C%2520college%2520banners%2520and%2520displays%252C%2520professional%2520educational%2520photography&width=600&height=400&seq=8&orientation=landscape" alt="College Fair" class="w-full h-full object-cover object-top">
+                            </div>
+                            <div class="p-6">
+                                <div class="inline-block bg-primary/20 px-2 py-1 rounded text-xs font-medium text-gray-800 mb-2">Academic</div>
+                                <h3 class="text-xl font-bold text-gray-800 mb-2">Annual College & Career Fair</h3>
+                                <div class="space-y-2 mb-4">
+                                    <div class="flex items-center text-sm text-gray-600">
+                                        <div class="w-4 h-4 flex items-center justify-center mr-2">
+                                            <i class="ri-calendar-line"></i>
+                                        </div>
+                                        June 2, 2025
+                                    </div>
+                                    <div class="flex items-center text-sm text-gray-600">
+                                        <div class="w-4 h-4 flex items-center justify-center mr-2">
+                                            <i class="ri-time-line"></i>
+                                        </div>
+                                        10:00 AM - 3:00 PM
+                                    </div>
+                                    <div class="flex items-center text-sm text-gray-600">
+                                        <div class="w-4 h-4 flex items-center justify-center mr-2">
+                                            <i class="ri-map-pin-line"></i>
+                                        </div>
+                                        School Gymnasium
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <a href="#" class="bg-primary text-gray-800 px-4 py-2 text-sm font-medium !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all">Details</a>
+                                    <div class="flex space-x-2">
+                                        <button class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-200 transition-colors">
+                                            <i class="ri-calendar-2-line"></i>
+                                        </button>
+                                        <button class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-200 transition-colors">
+                                            <i class="ri-share-line"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Event Card 8 -->
+                        <div class="bg-white rounded shadow-md overflow-hidden transition-transform hover:shadow-lg hover:-translate-y-1">
+                            <div class="h-48 overflow-hidden">
+                                <img src="https://readdy.ai/api/search-image?query=high%2520school%2520art%2520exhibition%252C%2520student%2520artwork%2520displayed%2520in%2520gallery%252C%2520paintings%2520and%2520sculptures%252C%2520visitors%2520viewing%2520art%252C%2520gallery%2520lighting%252C%2520professional%2520art%2520exhibition%2520photography&width=600&height=400&seq=9&orientation=landscape" alt="Art Exhibition" class="w-full h-full object-cover object-top">
+                            </div>
+                            <div class="p-6">
+                                <div class="inline-block bg-primary/20 px-2 py-1 rounded text-xs font-medium text-gray-800 mb-2">Arts</div>
+                                <h3 class="text-xl font-bold text-gray-800 mb-2">Student Art Exhibition Opening</h3>
+                                <div class="space-y-2 mb-4">
+                                    <div class="flex items-center text-sm text-gray-600">
+                                        <div class="w-4 h-4 flex items-center justify-center mr-2">
+                                            <i class="ri-calendar-line"></i>
+                                        </div>
+                                        June 5, 2025
+                                    </div>
+                                    <div class="flex items-center text-sm text-gray-600">
+                                        <div class="w-4 h-4 flex items-center justify-center mr-2">
+                                            <i class="ri-time-line"></i>
+                                        </div>
+                                        6:00 PM - 8:30 PM
+                                    </div>
+                                    <div class="flex items-center text-sm text-gray-600">
+                                        <div class="w-4 h-4 flex items-center justify-center mr-2">
+                                            <i class="ri-map-pin-line"></i>
+                                        </div>
+                                        School Art Gallery
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <a href="#" class="bg-primary text-gray-800 px-4 py-2 text-sm font-medium !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all">RSVP</a>
+                                    <div class="flex space-x-2">
+                                        <button class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-200 transition-colors">
+                                            <i class="ri-calendar-2-line"></i>
+                                        </button>
+                                        <button class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-200 transition-colors">
+                                            <i class="ri-share-line"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Event Card 9 -->
+                        <div class="bg-white rounded shadow-md overflow-hidden transition-transform hover:shadow-lg hover:-translate-y-1">
+                            <div class="h-48 overflow-hidden">
+                                <img src="https://readdy.ai/api/search-image?query=high%2520school%2520field%2520day%2520event%252C%2520students%2520participating%2520in%2520outdoor%2520activities%252C%2520sports%2520competitions%252C%2520school%2520field%2520setting%252C%2520sunny%2520day%252C%2520professional%2520educational%2520photography&width=600&height=400&seq=10&orientation=landscape" alt="Field Day" class="w-full h-full object-cover object-top">
+                            </div>
+                            <div class="p-6">
+                                <div class="inline-block bg-primary/20 px-2 py-1 rounded text-xs font-medium text-gray-800 mb-2">Sports</div>
+                                <h3 class="text-xl font-bold text-gray-800 mb-2">Annual Field Day</h3>
+                                <div class="space-y-2 mb-4">
+                                    <div class="flex items-center text-sm text-gray-600">
+                                        <div class="w-4 h-4 flex items-center justify-center mr-2">
+                                            <i class="ri-calendar-line"></i>
+                                        </div>
+                                        June 9, 2025
+                                    </div>
+                                    <div class="flex items-center text-sm text-gray-600">
+                                        <div class="w-4 h-4 flex items-center justify-center mr-2">
+                                            <i class="ri-time-line"></i>
+                                        </div>
+                                        9:00 AM - 3:00 PM
+                                    </div>
+                                    <div class="flex items-center text-sm text-gray-600">
+                                        <div class="w-4 h-4 flex items-center justify-center mr-2">
+                                            <i class="ri-map-pin-line"></i>
+                                        </div>
+                                        School Athletic Fields
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <a href="#" class="bg-primary text-gray-800 px-4 py-2 text-sm font-medium !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all">Sign Up</a>
+                                    <div class="flex space-x-2">
+                                        <button class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-200 transition-colors">
+                                            <i class="ri-calendar-2-line"></i>
+                                        </button>
+                                        <button class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-200 transition-colors">
+                                            <i class="ri-share-line"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="mt-12 flex justify-center">
+                        <nav class="flex items-center space-x-2">
+                            <a href="#" class="w-10 h-10 flex items-center justify-center rounded border border-gray-300 text-gray-600 hover:bg-gray-50">
+                                <i class="ri-arrow-left-s-line"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 flex items-center justify-center rounded bg-primary text-gray-800 font-medium">1</a>
+                            <a href="#" class="w-10 h-10 flex items-center justify-center rounded border border-gray-300 text-gray-600 hover:bg-gray-50">2</a>
+                            <a href="#" class="w-10 h-10 flex items-center justify-center rounded border border-gray-300 text-gray-600 hover:bg-gray-50">3</a>
+                            <span class="w-10 h-10 flex items-center justify-center text-gray-600">...</span>
+                            <a href="#" class="w-10 h-10 flex items-center justify-center rounded border border-gray-300 text-gray-600 hover:bg-gray-50">8</a>
+                            <a href="#" class="w-10 h-10 flex items-center justify-center rounded border border-gray-300 text-gray-600 hover:bg-gray-50">
+                                <i class="ri-arrow-right-s-line"></i>
+                            </a>
+                        </nav>
+                    </div>
+                </div>
+
+                <!-- Calendar View (Hidden by default) -->
+                <div id="calendarView" class="hidden">
+                    <div class="bg-white rounded shadow-md p-6 mb-8">
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="flex items-center space-x-4">
+                                <button class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-gray-200 transition-colors">
+                                    <i class="ri-arrow-left-s-line"></i>
+                                </button>
+                                <h3 class="text-xl font-bold text-gray-800">May 2025</h3>
+                                <button class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-gray-200 transition-colors">
+                                    <i class="ri-arrow-right-s-line"></i>
+                                </button>
+                            </div>
+                            <div class="flex space-x-2">
+                                <button class="px-4 py-2 bg-gray-100 rounded text-sm font-medium text-gray-700 hover:bg-gray-200 transition-colors">Today</button>
+                                <button class="px-4 py-2 bg-gray-100 rounded text-sm font-medium text-gray-700 hover:bg-gray-200 transition-colors">Month</button>
+                                <button class="px-4 py-2 bg-gray-100 rounded text-sm font-medium text-gray-700 hover:bg-gray-200 transition-colors">Week</button>
+                                <button class="px-4 py-2 bg-gray-100 rounded text-sm font-medium text-gray-700 hover:bg-gray-200 transition-colors">Day</button>
+                            </div>
+                        </div>
+
+                        <!-- Calendar Grid -->
+                        <div class="grid grid-cols-7 gap-1">
+                            <!-- Days of Week -->
+                            <div class="text-center py-2 font-medium text-gray-600">Sun</div>
+                            <div class="text-center py-2 font-medium text-gray-600">Mon</div>
+                            <div class="text-center py-2 font-medium text-gray-600">Tue</div>
+                            <div class="text-center py-2 font-medium text-gray-600">Wed</div>
+                            <div class="text-center py-2 font-medium text-gray-600">Thu</div>
+                            <div class="text-center py-2 font-medium text-gray-600">Fri</div>
+                            <div class="text-center py-2 font-medium text-gray-600">Sat</div>
+
+                            <!-- Previous Month Days (Grayed out) -->
+                            <div class="calendar-day h-32 p-2 border border-gray-100 bg-gray-50">
+                                <span class="text-gray-400">28</span>
+                            </div>
+                            <div class="calendar-day h-32 p-2 border border-gray-100 bg-gray-50">
+                                <span class="text-gray-400">29</span>
+                            </div>
+                            <div class="calendar-day h-32 p-2 border border-gray-100 bg-gray-50">
+                                <span class="text-gray-400">30</span>
+                            </div>
+
+                            <!-- Current Month Days -->
+                            <div class="calendar-day h-32 p-2 border border-gray-100">
+                                <span class="text-gray-700">1</span>
+                            </div>
+                            <div class="calendar-day h-32 p-2 border border-gray-100">
+                                <span class="text-gray-700">2</span>
+                            </div>
+                            <div class="calendar-day h-32 p-2 border border-gray-100">
+                                <span class="text-gray-700">3</span>
+                            </div>
+                            <div class="calendar-day h-32 p-2 border border-gray-100">
+                                <span class="text-gray-700">4</span>
+                            </div>
+
+                            <div class="calendar-day h-32 p-2 border border-gray-100">
+                                <span class="text-gray-700">5</span>
+                            </div>
+                            <div class="calendar-day h-32 p-2 border border-gray-100">
+                                <span class="text-gray-700">6</span>
+                            </div>
+                            <div class="calendar-day h-32 p-2 border border-gray-100">
+                                <span class="text-gray-700">7</span>
+                            </div>
+                            <div class="calendar-day h-32 p-2 border border-gray-100">
+                                <span class="text-gray-700">8</span>
+                            </div>
+                            <div class="calendar-day h-32 p-2 border border-gray-100">
+                                <span class="text-gray-700">9</span>
+                            </div>
+                            <div class="calendar-day h-32 p-2 border border-gray-100">
+                                <span class="text-gray-700">10</span>
+                            </div>
+                            <div class="calendar-day h-32 p-2 border border-gray-100">
+                                <span class="text-gray-700">11</span>
+                            </div>
+
+                            <div class="calendar-day h-32 p-2 border border-gray-100">
+                                <span class="text-gray-700">12</span>
+                            </div>
+                            <div class="calendar-day h-32 p-2 border border-gray-100">
+                                <span class="text-gray-700">13</span>
+                            </div>
+                            <div class="calendar-day h-32 p-2 border border-gray-100">
+                                <span class="text-gray-700">14</span>
+                            </div>
+                            <div class="calendar-day h-32 p-2 border border-gray-100">
+                                <span class="text-gray-700">15</span>
+                            </div>
+                            <div class="calendar-day h-32 p-2 border border-gray-100">
+                                <span class="text-gray-700">16</span>
+                            </div>
+                            <div class="calendar-day h-32 p-2 border border-gray-100">
+                                <span class="text-gray-700">17</span>
+                            </div>
+                            <div class="calendar-day h-32 p-2 border border-gray-100">
+                                <span class="text-gray-700">18</span>
+                            </div>
+
+                            <div class="calendar-day h-32 p-2 border border-gray-100">
+                                <span class="text-gray-700">19</span>
+                            </div>
+                            <div class="calendar-day h-32 p-2 border border-gray-100">
+                                <span class="text-gray-700">20</span>
+                            </div>
+                            <div class="calendar-day h-32 p-2 border border-gray-100 has-event">
+                                <span class="text-gray-700">21</span>
+                                <div class="mt-1 text-xs bg-primary/20 p-1 rounded truncate">Community Service Day</div>
+                            </div>
+                            <div class="calendar-day h-32 p-2 border border-gray-100 has-event multiple-events">
+                                <span class="text-gray-700">22</span>
+                                <div class="mt-1 text-xs bg-primary/20 p-1 rounded truncate">Parent-Teacher Conferences</div>
+                            </div>
+                            <div class="calendar-day h-32 p-2 border border-gray-100 has-event">
+                                <span class="text-gray-700">23</span>
+                                <div class="mt-1 text-xs bg-primary/20 p-1 rounded truncate">Parent-Teacher Conferences</div>
+                            </div>
+                            <div class="calendar-day h-32 p-2 border border-gray-100 has-event">
+                                <span class="text-gray-700">24</span>
+                                <div class="mt-1 text-xs bg-primary/20 p-1 rounded truncate">Basketball Finals</div>
+                            </div>
+                            <div class="calendar-day h-32 p-2 border border-gray-100 has-event multiple-events">
+                                <span class="text-gray-700">25</span>
+                                <div class="mt-1 text-xs bg-primary/20 p-1 rounded truncate">Spring Musical</div>
+                                <div class="mt-1 text-xs bg-gray-100 p-1 rounded truncate">+1 more</div>
+                            </div>
+
+                            <div class="calendar-day h-32 p-2 border border-gray-100 has-event">
+                                <span class="text-gray-700">26</span>
+                                <div class="mt-1 text-xs bg-primary/20 p-1 rounded truncate">Spring Musical</div>
+                            </div>
+                            <div class="calendar-day h-32 p-2 border border-gray-100 has-event">
+                                <span class="text-gray-700">27</span>
+                                <div class="mt-1 text-xs bg-primary/20 p-1 rounded truncate">Spring Musical</div>
+                            </div>
+                            <div class="calendar-day h-32 p-2 border border-gray-100 has-event">
+                                <span class="text-gray-700">28</span>
+                                <div class="mt-1 text-xs bg-primary/20 p-1 rounded truncate">Science Fair</div>
+                            </div>
+                            <div class="calendar-day h-32 p-2 border border-gray-100">
+                                <span class="text-gray-700">29</span>
+                            </div>
+                            <div class="calendar-day h-32 p-2 border border-gray-100">
+                                <span class="text-gray-700">30</span>
+                            </div>
+                            <div class="calendar-day h-32 p-2 border border-gray-100">
+                                <span class="text-gray-700">31</span>
+                            </div>
+                            <div class="calendar-day h-32 p-2 border border-gray-100 bg-gray-50">
+                                <span class="text-gray-400">1</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Upcoming Events in Calendar View -->
+                    <div class="bg-white rounded shadow-md p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Upcoming Events</h3>
+                        <div class="space-y-4">
+                            <div class="flex gap-4 p-3 border-l-4 border-primary bg-primary/5 rounded-r">
+                                <div class="text-center min-w-16">
+                                    <div class="text-2xl font-bold text-gray-800">21</div>
+                                    <div class="text-sm text-gray-600">May</div>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Community Service Day</h4>
+                                    <div class="text-sm text-gray-600 mt-1">8:00 AM - 2:00 PM • Various Locations</div>
+                                    <div class="mt-2">
+                                        <span class="inline-block bg-primary/20 px-2 py-1 rounded-full text-xs font-medium text-gray-800">Community</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-4 p-3 border-l-4 border-primary bg-primary/5 rounded-r">
+                                <div class="text-center min-w-16">
+                                    <div class="text-2xl font-bold text-gray-800">22</div>
+                                    <div class="text-sm text-gray-600">May</div>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Parent-Teacher Conferences</h4>
+                                    <div class="text-sm text-gray-600 mt-1">3:00 PM - 8:00 PM • Individual Classrooms</div>
+                                    <div class="mt-2">
+                                        <span class="inline-block bg-primary/20 px-2 py-1 rounded-full text-xs font-medium text-gray-800">Parent-Teacher</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-4 p-3 border-l-4 border-primary bg-primary/5 rounded-r">
+                                <div class="text-center min-w-16">
+                                    <div class="text-2xl font-bold text-gray-800">24</div>
+                                    <div class="text-sm text-gray-600">May</div>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Basketball Championship Finals</h4>
+                                    <div class="text-sm text-gray-600 mt-1">6:00 PM - 8:00 PM • Main Gymnasium</div>
+                                    <div class="mt-2">
+                                        <span class="inline-block bg-primary/20 px-2 py-1 rounded-full text-xs font-medium text-gray-800">Sports</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-4 p-3 border-l-4 border-primary bg-primary/5 rounded-r">
+                                <div class="text-center min-w-16">
+                                    <div class="text-2xl font-bold text-gray-800">25</div>
+                                    <div class="text-sm text-gray-600">May</div>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Spring Musical: "The Sound of Music"</h4>
+                                    <div class="text-sm text-gray-600 mt-1">7:00 PM - 9:30 PM • Performing Arts Center</div>
+                                    <div class="mt-2">
+                                        <span class="inline-block bg-primary/20 px-2 py-1 rounded-full text-xs font-medium text-gray-800">Arts</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="lg:w-1/4 space-y-8">
+                <!-- Upcoming Events Widget -->
+                <div class="bg-white rounded shadow-md p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Upcoming Events</h3>
+                    <div class="space-y-4">
+                        <div class="flex gap-3">
+                            <div class="w-12 h-12 flex-shrink-0 bg-primary/10 rounded flex flex-col items-center justify-center">
+                                <span class="text-sm font-bold text-gray-800">21</span>
+                                <span class="text-xs text-gray-600">May</span>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-800 mb-1 line-clamp-2">Community Service Day</h4>
+                                <div class="flex items-center text-xs text-gray-500">
+                                    <div class="w-3 h-3 flex items-center justify-center mr-1">
+                                        <i class="ri-time-line"></i>
+                                    </div>
+                                    8:00 AM
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex gap-3">
+                            <div class="w-12 h-12 flex-shrink-0 bg-primary/10 rounded flex flex-col items-center justify-center">
+                                <span class="text-sm font-bold text-gray-800">22</span>
+                                <span class="text-xs text-gray-600">May</span>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-800 mb-1 line-clamp-2">Parent-Teacher Conferences</h4>
+                                <div class="flex items-center text-xs text-gray-500">
+                                    <div class="w-3 h-3 flex items-center justify-center mr-1">
+                                        <i class="ri-time-line"></i>
+                                    </div>
+                                    3:00 PM
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex gap-3">
+                            <div class="w-12 h-12 flex-shrink-0 bg-primary/10 rounded flex flex-col items-center justify-center">
+                                <span class="text-sm font-bold text-gray-800">24</span>
+                                <span class="text-xs text-gray-600">May</span>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-800 mb-1 line-clamp-2">Basketball Championship Finals</h4>
+                                <div class="flex items-center text-xs text-gray-500">
+                                    <div class="w-3 h-3 flex items-center justify-center mr-1">
+                                        <i class="ri-time-line"></i>
+                                    </div>
+                                    6:00 PM
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex gap-3">
+                            <div class="w-12 h-12 flex-shrink-0 bg-primary/10 rounded flex flex-col items-center justify-center">
+                                <span class="text-sm font-bold text-gray-800">25</span>
+                                <span class="text-xs text-gray-600">May</span>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-800 mb-1 line-clamp-2">Spring Musical: "The Sound of Music"</h4>
+                                <div class="flex items-center text-xs text-gray-500">
+                                    <div class="w-3 h-3 flex items-center justify-center mr-1">
+                                        <i class="ri-time-line"></i>
+                                    </div>
+                                    7:00 PM
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-gray-100">
+                        <a href="#" class="text-secondary font-medium hover:underline flex items-center justify-center">
+                            View All Events
+                            <div class="w-4 h-4 ml-1 flex items-center justify-center">
+                                <i class="ri-arrow-right-line"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Event Categories -->
+                <div class="bg-white rounded shadow-md p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Event Categories</h3>
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                            <span class="text-gray-700 hover:text-primary transition-colors">Academic</span>
+                            <span class="bg-primary/20 text-gray-800 text-xs font-medium px-2 py-1 rounded-full">18</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                            <span class="text-gray-700 hover:text-primary transition-colors">Sports</span>
+                            <span class="bg-primary/20 text-gray-800 text-xs font-medium px-2 py-1 rounded-full">24</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                            <span class="text-gray-700 hover:text-primary transition-colors">Arts & Culture</span>
+                            <span class="bg-primary/20 text-gray-800 text-xs font-medium px-2 py-1 rounded-full">15</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                            <span class="text-gray-700 hover:text-primary transition-colors">Community</span>
+                            <span class="bg-primary/20 text-gray-800 text-xs font-medium px-2 py-1 rounded-full">12</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                            <span class="text-gray-700 hover:text-primary transition-colors">Ceremony</span>
+                            <span class="bg-primary/20 text-gray-800 text-xs font-medium px-2 py-1 rounded-full">8</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2">
+                            <span class="text-gray-700 hover:text-primary transition-colors">Parent-Teacher</span>
+                            <span class="bg-primary/20 text-gray-800 text-xs font-medium px-2 py-1 rounded-full">6</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mini Calendar -->
+                <div class="bg-white rounded shadow-md p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Calendar</h3>
+                    <div class="flex items-center justify-between mb-4">
+                        <button class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-gray-200 transition-colors">
+                            <i class="ri-arrow-left-s-line"></i>
+                        </button>
+                        <h4 class="font-medium text-gray-800">May 2025</h4>
+                        <button class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-gray-200 transition-colors">
+                            <i class="ri-arrow-right-s-line"></i>
+                        </button>
+                    </div>
+                    <div class="grid grid-cols-7 gap-1 text-center">
+                        <div class="text-xs font-medium text-gray-600 py-1">S</div>
+                        <div class="text-xs font-medium text-gray-600 py-1">M</div>
+                        <div class="text-xs font-medium text-gray-600 py-1">T</div>
+                        <div class="text-xs font-medium text-gray-600 py-1">W</div>
+                        <div class="text-xs font-medium text-gray-600 py-1">T</div>
+                        <div class="text-xs font-medium text-gray-600 py-1">F</div>
+                        <div class="text-xs font-medium text-gray-600 py-1">S</div>
+
+                        <div class="text-xs text-gray-400 py-1">28</div>
+                        <div class="text-xs text-gray-400 py-1">29</div>
+                        <div class="text-xs text-gray-400 py-1">30</div>
+                        <div class="text-xs text-gray-700 py-1">1</div>
+                        <div class="text-xs text-gray-700 py-1">2</div>
+                        <div class="text-xs text-gray-700 py-1">3</div>
+                        <div class="text-xs text-gray-700 py-1">4</div>
+
+                        <div class="text-xs text-gray-700 py-1">5</div>
+                        <div class="text-xs text-gray-700 py-1">6</div>
+                        <div class="text-xs text-gray-700 py-1">7</div>
+                        <div class="text-xs text-gray-700 py-1">8</div>
+                        <div class="text-xs text-gray-700 py-1">9</div>
+                        <div class="text-xs text-gray-700 py-1">10</div>
+                        <div class="text-xs text-gray-700 py-1">11</div>
+
+                        <div class="text-xs text-gray-700 py-1">12</div>
+                        <div class="text-xs text-gray-700 py-1">13</div>
+                        <div class="text-xs text-gray-700 py-1">14</div>
+                        <div class="text-xs text-gray-700 py-1">15</div>
+                        <div class="text-xs text-gray-700 py-1">16</div>
+                        <div class="text-xs text-gray-700 py-1">17</div>
+                        <div class="text-xs text-gray-700 py-1">18</div>
+
+                        <div class="text-xs text-gray-700 py-1">19</div>
+                        <div class="text-xs text-gray-700 py-1">20</div>
+                        <div class="text-xs text-gray-700 py-1 rounded-full bg-primary">21</div>
+                        <div class="text-xs text-gray-700 py-1 rounded-full bg-primary/30">22</div>
+                        <div class="text-xs text-gray-700 py-1 rounded-full bg-primary/30">23</div>
+                        <div class="text-xs text-gray-700 py-1 rounded-full bg-primary/30">24</div>
+                        <div class="text-xs text-gray-700 py-1 rounded-full bg-primary/30">25</div>
+
+                        <div class="text-xs text-gray-700 py-1 rounded-full bg-primary/30">26</div>
+                        <div class="text-xs text-gray-700 py-1 rounded-full bg-primary/30">27</div>
+                        <div class="text-xs text-gray-700 py-1 rounded-full bg-primary/30">28</div>
+                        <div class="text-xs text-gray-700 py-1">29</div>
+                        <div class="text-xs text-gray-700 py-1">30</div>
+                        <div class="text-xs text-gray-700 py-1">31</div>
+                        <div class="text-xs text-gray-400 py-1">1</div>
+                    </div>
+                </div>
+
+                <!-- Newsletter -->
+                <div class="bg-primary/10 rounded p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Event Updates</h3>
+                    <p class="text-gray-600 mb-4">Subscribe to receive notifications about upcoming events directly in your inbox.</p>
+                    <form class="space-y-3">
+                        <input type="email" placeholder="Your email address" class="w-full px-4 py-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm">
+                        <button type="submit" class="w-full bg-primary text-gray-800 px-4 py-3 font-medium !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-gray-800 text-white pt-16 pb-8">
+<div class="container mx-auto px-4">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+<div>
+<a href="#" class="logo text-2xl font-bold text-white mb-4 inline-block">Divine Grace School</a>
+<p class="text-gray-300 mb-6">Inspiring excellence and nurturing futures since 2003. Committed to providing a comprehensive education that prepares students for success in college and beyond.</p>
+<div class="flex space-x-4">
+<a href="#" class="w-10 h-10 rounded-full border border-gray-600 flex items-center justify-center text-gray-300 hover:text-white hover:border-white transition-colors">
+<i class="ri-facebook-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 rounded-full border border-gray-600 flex items-center justify-center text-gray-300 hover:text-white hover:border-white transition-colors">
+<i class="ri-twitter-x-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 rounded-full border border-gray-600 flex items-center justify-center text-gray-300 hover:text-white hover:border-white transition-colors">
+<i class="ri-instagram-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 rounded-full border border-gray-600 flex items-center justify-center text-gray-300 hover:text-white hover:border-white transition-colors">
+<i class="ri-youtube-fill"></i>
+</a>
+</div>
+</div>
+<div>
+<h4 class="text-lg font-bold mb-4">Quick Links</h4>
+<ul class="space-y-2">
+<li><a href="#" class="text-gray-300 hover:text-white transition-colors">About Us</a></li>
+<li><a href="#" class="text-gray-300 hover:text-white transition-colors">Academics</a></li>
+<li><a href="#" class="text-gray-300 hover:text-white transition-colors">Admissions</a></li>
+<li><a href="#" class="text-gray-300 hover:text-white transition-colors">Athletics</a></li>
+<li><a href="#" class="text-gray-300 hover:text-white transition-colors">Arts</a></li>
+<li><a href="#" class="text-gray-300 hover:text-white transition-colors">Student Life</a></li>
+<li><a href="#" class="text-gray-300 hover:text-white transition-colors">Parent Resources</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-lg font-bold mb-4">Contact Us</h4>
+<ul class="space-y-3">
+<li class="flex">
+<div class="w-5 h-5 flex items-center justify-center mr-2 mt-1">
+<i class="ri-map-pin-line"></i>
+</div>
+<span class="text-gray-300">P.O Box WJ 145, Weija-Accra<br>SCC off Mallam Kasoa Highway</span>
+</li>
+<li class="flex">
+<div class="w-5 h-5 flex items-center justify-center mr-2">
+<i class="ri-phone-line"></i>
+</div>
+<span class="text-gray-300">020 798 5666 / 024 705 5879</span>
+</li>
+<li class="flex">
+<div class="w-5 h-5 flex items-center justify-center mr-2">
+<i class="ri-mail-line"></i>
+</div>
+<span class="text-gray-300">info@divinegraceschool.edu</span>
+</li>
+<li class="flex">
+<div class="w-5 h-5 flex items-center justify-center mr-2">
+<i class="ri-time-line"></i>
+</div>
+<span class="text-gray-300">Monday-Friday: 7:30 AM - 4:00 PM</span>
+</li>
+</ul>
+</div>
+<div>
+<h4 class="text-lg font-bold mb-4">Newsletter</h4>
+<p class="text-gray-300 mb-4">Subscribe to receive updates about school news and events.</p>
+<form class="space-y-3">
+<input type="email" placeholder="Your email address" class="w-full px-4 py-2 rounded bg-gray-700 border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+<button type="submit" class="w-full bg-primary text-gray-800 px-4 py-2 font-medium !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all">Subscribe</button>
+</form>
+</div>
+</div>
+<div class="pt-8 border-t border-gray-700 text-center text-gray-400 text-sm">
+<p>&copy; 2025 Divine Grace School. All rights reserved.</p>
+</div>
+</div>
+</footer>
+
+<!-- Back to Top Button -->
+<button id="backToTop" class="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-primary text-gray-800 shadow-lg flex items-center justify-center opacity-0 invisible transition-all duration-300">
+    <i class="ri-arrow-up-line text-xl"></i>
+</button>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Back to Top Button
+    const backToTopButton = document.getElementById('backToTop');
+    window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 300) {
+            backToTopButton.classList.remove('opacity-0', 'invisible');
+            backToTopButton.classList.add('opacity-100', 'visible');
+        } else {
+            backToTopButton.classList.remove('opacity-100', 'visible');
+            backToTopButton.classList.add('opacity-0', 'invisible');
+        }
+    });
+
+    backToTopButton.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    // Custom Radio Button Functionality
+    const radioButtons = document.querySelectorAll('.custom-radio input[type="radio"]');
+    radioButtons.forEach(radio => {
+        radio.addEventListener('change', function() {
+            const radioName = this.getAttribute('name');
+            const allRadiosInGroup = document.querySelectorAll(`.custom-radio input[name="${radioName}"]`);
+            allRadiosInGroup.forEach(radioInGroup => {
+                const radioMark = radioInGroup.nextElementSibling;
+                if (radioInGroup.checked) {
+                    radioMark.classList.add('checked');
+
+                    // Show custom date range if "Custom Range" is selected
+                    if (radioName === 'date' && radioInGroup.value === 'custom') {
+                        document.getElementById('customDateRange').classList.remove('hidden');
+                    } else if (radioName === 'date') {
+                        document.getElementById('customDateRange').classList.add('hidden');
+                    }
+                } else {
+                    radioMark.classList.remove('checked');
+                }
+            });
+        });
+
+        // Initialize state
+        if (radio.checked) {
+            const radioMark = radio.nextElementSibling;
+            radioMark.classList.add('checked');
+        }
+    });
+
+    // Featured Events Slider Dots
+    const dots = document.querySelectorAll('.dot');
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', function() {
+            // Remove active class from all dots
+            dots.forEach(d => d.classList.remove('active'));
+            // Add active class to clicked dot
+            this.classList.add('active');
+            // Here you would normally change the slide
+            // For this demo, we're just changing the active dot
+        });
+    });
+
+    // View Toggle Functionality
+    const listViewBtn = document.getElementById('listViewBtn');
+    const calendarViewBtn = document.getElementById('calendarViewBtn');
+    const listView = document.getElementById('listView');
+    const calendarView = document.getElementById('calendarView');
+
+    listViewBtn.addEventListener('click', function() {
+        listViewBtn.classList.add('active');
+        calendarViewBtn.classList.remove('active');
+        listView.classList.remove('hidden');
+        listView.classList.add('block');
+        calendarView.classList.add('hidden');
+        calendarView.classList.remove('block');
+    });
+
+    calendarViewBtn.addEventListener('click', function() {
+        calendarViewBtn.classList.add('active');
+        listViewBtn.classList.remove('active');
+        calendarView.classList.remove('hidden');
+        calendarView.classList.add('block');
+        listView.classList.add('hidden');
+        listView.classList.remove('block');
+    });
+
+    // Show Past Events Toggle
+    const showPastEventsToggle = document.getElementById('showPastEvents');
+    showPastEventsToggle.addEventListener('change', function() {
+        // Here you would filter events based on the toggle state
+        console.log('Show past events:', this.checked);
+    });
+
+    // Mobile Menu Functionality (New Code)
+    const menuButton = document.getElementById('menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const closeMenuButton = document.getElementById('close-menu-button');
+    const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+
+    function openMobileMenu() {
+        mobileMenu.classList.remove('translate-x-full');
+        mobileMenu.classList.add('translate-x-0');
+        mobileMenuOverlay.classList.remove('hidden');
+        document.body.style.overflow = 'hidden'; // Prevent scrolling of main content
+    }
+
+    function closeMobileMenu() {
+        mobileMenu.classList.remove('translate-x-0');
+        mobileMenu.classList.add('translate-x-full');
+        mobileMenuOverlay.classList.add('hidden');
+        document.body.style.overflow = ''; // Re-enable scrolling
+    }
+
+    menuButton.addEventListener('click', openMobileMenu);
+    closeMenuButton.addEventListener('click', closeMobileMenu);
+    mobileMenuOverlay.addEventListener('click', closeMobileMenu); // Close when clicking outside
+});
+</script>
+</body>
+</html>

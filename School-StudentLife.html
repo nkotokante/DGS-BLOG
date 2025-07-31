@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Divine Grace School | Student Life</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#D1DFB2',secondary:'#4A6741'},borderRadius:{'none':'0px','sm':'8px',DEFAULT:'12px','md':'16px','lg':'20px','xl':'24px','2xl':'28px','3xl':'32px','full':'9999px','button':'12px'}}}}</script>
+<style>
+/* Font fallbacks - using system fonts that are available offline */
+body {
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+h1, h2, h3, h4, h5, h6 {
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+font-weight: 600;
+}
+.logo {
+font-family: cursive, "Comic Sans MS", "Brush Script MT", fantasy;
+}
+
+/* Icon replacements using CSS symbols and Unicode */
+.ri-search-line::before { content: "🔍"; font-size: 14px; }
+.ri-menu-line::before { content: "☰"; font-size: 18px; }
+.ri-arrow-right-line::before { content: "→"; font-size: 14px; }
+.ri-calendar-line::before { content: "📅"; font-size: 12px; }
+.ri-time-line::before { content: "🕐"; font-size: 12px; }
+.ri-map-pin-line::before { content: "📍"; font-size: 12px; }
+.ri-facebook-fill::before { content: "f"; background: currentColor; color: white; border-radius: 2px; padding: 2px; font-weight: bold; }
+.ri-twitter-x-fill::before { content: "𝕏"; font-weight: bold; }
+.ri-instagram-fill::before { content: "📷"; }
+.ri-youtube-fill::before { content: "▶"; background: currentColor; color: white; border-radius: 2px; padding: 2px; }
+.ri-heart-line::before { content: "♡"; }
+.ri-chat-1-line::before { content: "💬"; font-size: 12px; }
+.ri-phone-line::before { content: "📞"; font-size: 14px; }
+.ri-mail-line::before { content: "✉"; font-size: 14px; }
+.ri-arrow-up-line::before { content: "↑"; font-size: 16px; font-weight: bold; }
+
+/* Remove default icon styling */
+:where([class^="ri-"])::before {
+content: attr(data-icon);
+font-family: inherit;
+font-style: normal;
+font-weight: normal;
+}
+
+.event-date {
+position: relative;
+overflow: hidden;
+}
+.event-date::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(74, 103, 65, 0.1);
+z-index: -1;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+input[type="number"] {
+-moz-appearance: textfield;
+}
+.student-spotlight-scroll::-webkit-scrollbar {
+height: 6px;
+}
+.student-spotlight-scroll::-webkit-scrollbar-track {
+background: #f1f1f1;
+border-radius: 10px;
+}
+.student-spotlight-scroll::-webkit-scrollbar-thumb {
+background: #D1DFB2;
+border-radius: 10px;
+}
+.student-spotlight-scroll::-webkit-scrollbar-thumb:hover {
+background: #4A6741;
+}
+.custom-checkbox {
+display: flex;
+align-items: center;
+cursor: pointer;
+}
+.custom-checkbox input {
+position: absolute;
+opacity: 0;
+cursor: pointer;
+height: 0;
+width: 0;
+}
+.checkmark {
+height: 20px;
+width: 20px;
+background-color: #fff;
+border: 2px solid #D1DFB2;
+border-radius: 4px;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.custom-checkbox input:checked ~ .checkmark {
+background-color: #D1DFB2;
+}
+.checkmark:after {
+content: "";
+display: none;
+}
+.custom-checkbox input:checked ~ .checkmark:after {
+display: block;
+width: 6px;
+height: 10px;
+border: solid white;
+border-width: 0 2px 2px 0;
+transform: rotate(45deg);
+}
+.hero-section {
+background-image: url('images/COMPOUND.jpg');
+background-size: cover;
+background-position: center;
+}
+.student-life-hero {
+    background-image: url('images/sports\ day\ dance.jpg');
+    background-size: cover;
+    background-position: center;
+}
+</style>
+</head>
+<body class="bg-gray-50">
+<!-- Header -->
+<header class="sticky top-0 z-50 bg-white shadow-sm">
+<div class="container mx-auto px-4 py-3 flex justify-between items-center">
+<div class="flex items-center">
+<a href="School-Home.html" class="logo text-2xl font-bold text-gray-800">Divine Grace School</a></div>
+<nav id="main-nav" class="hidden md:flex space-x-8">
+<a href="School-Home.html" class="font-medium text-gray-700 hover:text-primary transition-colors">Home</a>
+<a href="School-News.html" class="font-medium text-gray-700 hover:text-primary transition-colors">News</a>
+<a href="School-Events.html" class="font-medium text-gray-700 hover:text-primary transition-colors">Events</a>
+<a href="school-academics.html" class="font-medium text-gray-700 hover:text-primary transition-colors">Academics</a>
+<a href="School-StudentLife.html" class="font-medium text-primary transition-colors">Student Life</a>
+<a href="School-Contact.html" class="font-medium text-gray-700 hover:text-primary transition-colors">Contact</a>
+</nav>
+<div class="flex items-center space-x-4">
+<div class="relative">
+<input type="text" placeholder="Search..." class="py-2 pl-10 pr-4 w-40 lg:w-64 rounded-full text-sm border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+<div class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 flex items-center justify-center text-gray-400">
+<i class="ri-search-line"></i>
+</div>
+</div>
+<button id="menu-button" class="md:hidden w-10 h-10 flex items-center justify-center text-gray-700">
+<i class="ri-menu-line text-xl"></i>
+</button>
+</div>
+</div>
+<!-- Mobile Menu Overlay -->
+<div id="mobile-menu-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden"></div>
+<!-- Mobile Menu -->
+<nav id="mobile-menu" class="fixed top-0 right-0 w-64 h-full bg-white shadow-lg z-50 transform translate-x-full transition-transform duration-300 ease-in-out md:hidden">
+    <div class="p-4 flex justify-end">
+        <button id="close-menu-button" class="text-gray-700 text-2xl">&times;</button>
+    </div>
+    <ul class="flex flex-col p-4 space-y-4">
+        <li><a href="School-Home.html" class="block font-medium text-gray-700 hover:text-primary transition-colors py-2">Home</a></li>
+        <li><a href="School-News.html" class="block font-medium text-gray-700 hover:text-primary transition-colors py-2">News</a></li>
+        <li><a href="School-Events.html" class="block font-medium text-gray-700 hover:text-primary transition-colors py-2">Events</a></li>
+        <li><a href="school-academics.html" class="block font-medium text-gray-700 hover:text-primary transition-colors py-2">Academics</a></li>
+        <li><a href="School-StudentLife.html" class="block font-medium text-gray-700 hover:text-primary transition-colors py-2">Student Life</a></li>
+        <li><a href="School-Contact.html" class="block font-medium text-gray-700 hover:text-primary transition-colors py-2">Contact</a></li>
+    </ul>
+</nav>
+</header>
+
+<!-- Hero Section -->
+<section class="student-life-hero relative">
+<div class="absolute inset-0 bg-gradient-to-r from-gray-900/70 to-gray-900/30"></div>
+<div class="container mx-auto px-4 py-24 md:py-32 relative z-10">
+<div class="max-w-2xl">
+<h1 class="text-4xl md:text-5xl font-bold text-white mb-6">Vibrant Student Life</h1>
+<p class="text-xl text-white/90 mb-8">Explore the diverse opportunities and supportive community that define student life at Divine Grace School.</p>
+<div class="flex flex-wrap gap-4">
+<a href="#clubs" class="bg-primary text-gray-800 px-6 py-3 font-semibold !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all">Clubs & Activities</a>
+<a href="#athletics" class="bg-white text-gray-800 px-6 py-3 font-semibold !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all">Athletics</a>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Welcome Section -->
+<section class="py-16 bg-white">
+<div class="container mx-auto px-4 text-center">
+<h2 class="text-3xl font-bold text-gray-800 mb-6">A Community Where You Belong</h2>
+<p class="text-lg text-gray-600 max-w-3xl mx-auto">
+At Divine Grace School, student life extends far beyond the classroom. We believe in fostering a holistic environment where students can discover their passions, develop leadership skills, and build lasting friendships. From engaging clubs and competitive sports to enriching community service, there's something for everyone.
+</p>
+</div>
+</section>
+
+<!-- Clubs & Activities -->
+<section id="clubs" class="py-16 bg-gray-50">
+<div class="container mx-auto px-4">
+<div class="flex justify-between items-center mb-10">
+<h2 class="text-3xl font-bold text-gray-800">Clubs & Activities</h2>
+<a href="#" class="flex items-center text-secondary font-medium hover:underline">
+View All Clubs
+<div class="w-5 h-5 ml-1 flex items-center justify-center">
+<i class="ri-arrow-right-line"></i>
+</div>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Club Card 1 -->
+<div class="bg-white rounded shadow-md overflow-hidden transition-transform hover:shadow-lg hover:-translate-y-1">
+<div class="h-56 overflow-hidden">
+<img src="https://via.placeholder.com/400x300/D1DFB2/4A6741?text=Robotics+Club" alt="Robotics Club" class="w-full h-full object-cover">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold text-gray-800 mb-2">Computing Club</h3>
+<p class="text-gray-600 mb-4">Design, build, and develop websites, Photos and Videos for competitions, entertainment and innovative projects. Open to all skill levels.</p>
+<a href="#" class="text-secondary font-medium hover:underline flex items-center">
+Learn More
+<div class="w-4 h-4 ml-1 flex items-center justify-center">
+<i class="ri-arrow-right-line"></i>
+</div>
+</a>
+</div>
+</div>
+<!-- Club Card 2 -->
+<div class="bg-white rounded shadow-md overflow-hidden transition-transform hover:shadow-lg hover:-translate-y-1">
+<div class="h-56 overflow-hidden">
+<img src="https://via.placeholder.com/400x300/D1DFB2/4A6741?text=Debate+Team" alt="Debate Team" class="w-full h-full object-cover">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold text-gray-800 mb-2">Debate Team</h3>
+<p class="text-gray-600 mb-4">Sharpen your public speaking and critical thinking skills while engaging in lively discussions.</p>
+<a href="#" class="text-secondary font-medium hover:underline flex items-center">
+Learn More
+<div class="w-4 h-4 ml-1 flex items-center justify-center">
+<i class="ri-arrow-right-line"></i>
+</div>
+</a>
+</div>
+</div>
+<!-- Club Card 3 -->
+<div class="bg-white rounded shadow-md overflow-hidden transition-transform hover:shadow-lg hover:-translate-y-1">
+<div class="h-56 overflow-hidden">
+<img src="https://via.placeholder.com/400x300/D1DFB2/4A6741?text=Art+Club" alt="Art Club" class="w-full h-full object-cover">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold text-gray-800 mb-2">Art Club</h3>
+<p class="text-gray-600 mb-4">Unleash your creativity through various art forms, from painting to sculpture and digital art.</p>
+<a href="#" class="text-secondary font-medium hover:underline flex items-center">
+Learn More
+<div class="w-4 h-4 ml-1 flex items-center justify-center">
+<i class="ri-arrow-right-line"></i>
+</div>
+</a>
+</div>
+</div>
+<!-- Club Card 4 -->
+<div class="bg-white rounded shadow-md overflow-hidden transition-transform hover:shadow-lg hover:-translate-y-1">
+<div class="h-56 overflow-hidden">
+<img src="https://via.placeholder.com/400x300/D1DFB2/4A6741?text=Chess+Club" alt="Chess Club" class="w-full h-full object-cover">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold text-gray-800 mb-2">Chess Club</h3>
+<p class="text-gray-600 mb-4">Develop strategic thinking and compete with fellow students in friendly and competitive matches.</p>
+<a href="#" class="text-secondary font-medium hover:underline flex items-center">
+Learn More
+<div class="w-4 h-4 ml-1 flex items-center justify-center">
+<i class="ri-arrow-right-line"></i>
+</div>
+</a>
+</div>
+</div>
+<!-- Club Card 5 -->
+<div class="bg-white rounded shadow-md overflow-hidden transition-transform hover:shadow-lg hover:-translate-y-1">
+<div class="h-56 overflow-hidden">
+<img src="https://via.placeholder.com/400x300/D1DFB2/4A6741?text=Environmental+Club" alt="Environmental Club" class="w-full h-full object-cover">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold text-gray-800 mb-2">Environmental Club</h3>
+<p class="text-gray-600 mb-4">Promote sustainability and engage in initiatives to protect our planet and local community.</p>
+<a href="#" class="text-secondary font-medium hover:underline flex items-center">
+Learn More
+<div class="w-4 h-4 ml-1 flex items-center justify-center">
+<i class="ri-arrow-right-line"></i>
+</div>
+</a>
+</div>
+</div>
+<!-- Club Card 6 -->
+<div class="bg-white rounded shadow-md overflow-hidden transition-transform hover:shadow-lg hover:-translate-y-1">
+<div class="h-56 overflow-hidden">
+<img src="https://via.placeholder.com/400x300/D1DFB2/4A6741?text=Student+Government" alt="Student Government" class="w-full h-full object-cover">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold text-gray-800 mb-2">Student Government</h3>
+<p class="text-gray-600 mb-4">Represent your peers, organize school events, and contribute to the school community.</p>
+<a href="#" class="text-secondary font-medium hover:underline flex items-center">
+Learn More
+<div class="w-4 h-4 ml-1 flex items-center justify-center">
+<i class="ri-arrow-right-line"></i>
+</div>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Athletics Section -->
+<section id="athletics" class="py-16 bg-white">
+<div class="container mx-auto px-4">
+<div class="flex justify-between items-center mb-10">
+<h2 class="text-3xl font-bold text-gray-800">Athletics</h2>
+<a href="#" class="flex items-center text-secondary font-medium hover:underline">
+View All Sports
+<div class="w-5 h-5 ml-1 flex items-center justify-center">
+<i class="ri-arrow-right-line"></i>
+</div>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Sport Card 1 -->
+<div class="bg-white rounded shadow-md overflow-hidden transition-transform hover:shadow-lg hover:-translate-y-1">
+<div class="h-56 overflow-hidden">
+<img src="https://via.placeholder.com/400x300/4A6741/FFFFFF?text=Basketball" alt="Basketball Team" class="w-full h-full object-cover">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold text-gray-800 mb-2">Basketball</h3>
+<p class="text-gray-600 mb-4">Join our championship-winning basketball teams for boys and girls.</p>
+<a href="#" class="text-secondary font-medium hover:underline flex items-center">
+View Schedule
+<div class="w-4 h-4 ml-1 flex items-center justify-center">
+<i class="ri-arrow-right-line"></i>
+</div>
+</a>
+</div>
+</div>
+<!-- Sport Card 2 -->
+<div class="bg-white rounded shadow-md overflow-hidden transition-transform hover:shadow-lg hover:-translate-y-1">
+<div class="h-56 overflow-hidden">
+<img src="https://via.placeholder.com/400x300/4A6741/FFFFFF?text=Soccer" alt="Soccer Team" class="w-full h-full object-cover">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold text-gray-800 mb-2">Soccer</h3>
+<p class="text-gray-600 mb-4">Compete on the field with our dedicated boys' and girls' soccer teams.</p>
+<a href="#" class="text-secondary font-medium hover:underline flex items-center">
+View Schedule
+<div class="w-4 h-4 ml-1 flex items-center justify-center">
+<i class="ri-arrow-right-line"></i>
+</div>
+</a>
+</div>
+</div>
+<!-- Sport Card 3 -->
+<div class="bg-white rounded shadow-md overflow-hidden transition-transform hover:shadow-lg hover:-translate-y-1">
+<div class="h-56 overflow-hidden">
+<img src="https://via.placeholder.com/400x300/4A6741/FFFFFF?text=Track+and+Field" alt="Track and Field" class="w-full h-full object-cover">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold text-gray-800 mb-2">Track & Field</h3>
+<p class="text-gray-600 mb-4">Develop speed, strength, and endurance in various track and field events.</p>
+<a href="#" class="text-secondary font-medium hover:underline flex items-center">
+View Schedule
+<div class="w-4 h-4 ml-1 flex items-center justify-center">
+<i class="ri-arrow-right-line"></i>
+</div>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Student Support Section -->
+<section class="py-16 bg-gray-50">
+<div class="container mx-auto px-4">
+<h2 class="text-3xl font-bold text-gray-800 mb-10 text-center">Student Support & Well-being</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="bg-white rounded shadow-md p-8">
+<h3 class="text-2xl font-bold text-gray-800 mb-4">Counseling Services</h3>
+<p class="text-gray-600 mb-4">Our dedicated counselors provide academic, social, and emotional support to help students thrive. Confidential services are available to all students.</p>
+<a href="#" class="inline-block bg-primary text-gray-800 px-6 py-3 font-semibold !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all">Meet Our Counselors</a>
+</div>
+<div class="bg-white rounded shadow-md p-8">
+<h3 class="text-2xl font-bold text-gray-800 mb-4">Health & Wellness</h3>
+<p class="text-gray-600 mb-4">We prioritize student health with on-site nursing staff, health education programs, and resources for physical and mental well-being.</p>
+<a href="#" class="inline-block bg-primary text-gray-800 px-6 py-3 font-semibold !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all">Learn About Health Services</a>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Campus Life Gallery -->
+<section class="py-16 bg-white">
+<div class="container mx-auto px-4">
+<h2 class="text-3xl font-bold text-gray-800 mb-10 text-center">Campus Life Gallery</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+<div class="overflow-hidden rounded shadow-md">
+<img src="images/interaction.jpg" alt="Students Socializing" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300">
+</div>
+<div class="overflow-hidden rounded shadow-md">
+<img src="images/career day soldiers.jpg" alt="School Event" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300">
+</div>
+<div class="overflow-hidden rounded shadow-md">
+<img src="images/learning act.jpg" alt="Classroom Interaction" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300">
+</div>
+<div class="overflow-hidden rounded shadow-md">
+<img src="images/ghana day rep.jpg" alt="Outdoor Activity" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300">
+</div>
+<div class="overflow-hidden rounded shadow-md">
+<img src="images/career day nurses.JPG" alt="Library Study" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300">
+</div>
+<div class="overflow-hidden rounded shadow-md">
+<img src="images/color red.jpg" alt="Art Class" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300">
+</div>
+<div class="overflow-hidden rounded shadow-md">
+<img src="images/outdoor.JPG" alt="Sports Practice" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300">
+</div>
+<div class="overflow-hidden rounded shadow-md">
+<img src="images/cape coast castle.jpg" alt="Community Service" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300">
+</div>
+</div>
+</div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-gray-800 text-white pt-16 pb-8">
+<div class="container mx-auto px-4">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+<div>
+<a href="School-Home.html" class="logo text-2xl font-bold text-white mb-4 inline-block">Divine Grace School</a>
+<p class="text-gray-300 mb-6">Inspiring excellence and nurturing futures since 2003. Committed to providing a comprehensive education that prepares students for success in college and beyond.</p>
+<div class="flex space-x-4">
+<a href="#" class="w-10 h-10 rounded-full border border-gray-600 flex items-center justify-center text-gray-300 hover:text-white hover:border-white transition-colors">
+<i class="ri-facebook-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 rounded-full border border-gray-600 flex items-center justify-center text-gray-300 hover:text-white hover:border-white transition-colors">
+<i class="ri-twitter-x-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 rounded-full border border-gray-600 flex items-center justify-center text-gray-300 hover:text-white hover:border-white transition-colors">
+<i class="ri-instagram-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 rounded-full border border-gray-600 flex items-center justify-center text-gray-300 hover:text-white hover:border-white transition-colors">
+<i class="ri-youtube-fill"></i>
+</a>
+</div>
+</div>
+<div>
+<h4 class="text-lg font-bold mb-4">Quick Links</h4>
+<ul class="space-y-2">
+<li><a href="#" class="text-gray-300 hover:text-white transition-colors">About Us</a></li>
+<li><a href="school-academics.html" class="text-gray-300 hover:text-white transition-colors">Academics</a></li>
+<li><a href="#" class="text-gray-300 hover:text-white transition-colors">Admissions</a></li>
+<li><a href="#athletics" class="text-gray-300 hover:text-white transition-colors">Athletics</a></li>
+<li><a href="#clubs" class="text-gray-300 hover:text-white transition-colors">Arts</a></li>
+<li><a href="School-StudentLife.html" class="text-gray-300 hover:text-white transition-colors">Student Life</a></li>
+<li><a href="#" class="text-gray-300 hover:text-white transition-colors">Parent Resources</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-lg font-bold mb-4">Contact Us</h4>
+<ul class="space-y-3">
+<li class="flex">
+<div class="w-5 h-5 flex items-center justify-center mr-2 mt-1">
+<i class="ri-map-pin-line"></i>
+</div>
+<span class="text-gray-300">P.O Box WJ 145, Weija-Accra<br>SCC off Mallam Kasoa Highway</span>
+</li>
+<li class="flex">
+<div class="w-5 h-5 flex items-center justify-center mr-2">
+<i class="ri-phone-line"></i>
+</div>
+<span class="text-gray-300">020 798 5666 / 024 705 5879</span>
+</li>
+<li class="flex">
+<div class="w-5 h-5 flex items-center justify-center mr-2">
+<i class="ri-mail-line"></i>
+</div>
+<span class="text-gray-300">info@divinegraceschool.edu</span>
+</li>
+<li class="flex">
+<div class="w-5 h-5 flex items-center justify-center mr-2">
+<i class="ri-time-line"></i>
+</div>
+<span class="text-gray-300">Monday-Friday: 7:30 AM - 4:00 PM</span>
+</li>
+</ul>
+</div>
+<div>
+<h4 class="text-lg font-bold mb-4">Newsletter</h4>
+<p class="text-gray-300 mb-4">Subscribe to receive updates about school news and events.</p>
+<form class="space-y-3">
+<input type="email" placeholder="Your email address" class="w-full px-4 py-2 rounded bg-gray-700 border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+<button type="submit" class="w-full bg-primary text-gray-800 px-4 py-2 font-medium !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all">Subscribe</button>
+</form>
+</div>
+</div>
+<div class="pt-8 border-t border-gray-700 text-center text-gray-400 text-sm">
+<p>&copy; 2025 Divine Grace School. All rights reserved.</p>
+</div>
+</div>
+</footer>
+<!-- Back to Top Button -->
+<button id="backToTop" class="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-primary text-gray-800 shadow-lg flex items-center justify-center opacity-0 invisible transition-all duration-300">
+<i class="ri-arrow-up-line text-xl"></i>
+</button>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+// Back to Top Button
+const backToTopButton = document.getElementById('backToTop');
+window.addEventListener('scroll', function() {
+if (window.pageYOffset > 300) {
+backToTopButton.classList.remove('opacity-0', 'invisible');
+backToTopButton.classList.add('opacity-100', 'visible');
+} else {
+backToTopButton.classList.remove('opacity-100', 'visible');
+backToTopButton.classList.add('opacity-0', 'invisible');
+}
+});
+backToTopButton.addEventListener('click', function() {
+window.scrollTo({
+top: 0,
+behavior: 'smooth'
+});
+});
+document.addEventListener('DOMContentLoaded', function() {
+// Custom Checkbox Functionality
+const checkboxes = document.querySelectorAll('.custom-checkbox input[type="checkbox"]');
+checkboxes.forEach(checkbox => {
+checkbox.addEventListener('change', function() {
+const checkmark = this.nextElementSibling;
+if (this.checked) {
+checkmark.classList.add('bg-primary');
+} else {
+checkmark.classList.remove('bg-primary');
+}
+});
+});
+});
+
+// Mobile Menu Functionality (New Code)
+const menuButton = document.getElementById('menu-button');
+const mobileMenu = document.getElementById('mobile-menu');
+const closeMenuButton = document.getElementById('close-menu-button');
+const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+
+function openMobileMenu() {
+    mobileMenu.classList.remove('translate-x-full');
+    mobileMenu.classList.add('translate-x-0');
+    mobileMenuOverlay.classList.remove('hidden');
+    document.body.style.overflow = 'hidden'; // Prevent scrolling of main content
+}
+
+function closeMobileMenu() {
+    mobileMenu.classList.remove('translate-x-0');
+    mobileMenu.classList.add('translate-x-full');
+    mobileMenuOverlay.classList.add('hidden');
+    document.body.style.overflow = ''; // Re-enable scrolling
+}
+
+menuButton.addEventListener('click', openMobileMenu);
+closeMenuButton.addEventListener('click', closeMobileMenu);
+mobileMenuOverlay.addEventListener('click', closeMobileMenu); // Close when clicking outside
+});
+</script>
+</body>
+</html>

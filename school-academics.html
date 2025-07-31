@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Divine Grace School | School Blog</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#D1DFB2',secondary:'#4A6741'},borderRadius:{'none':'0px','sm':'8px',DEFAULT:'12px','md':'16px','lg':'20px','xl':'24px','2xl':'28px','3xl':'32px','full':'9999px','button':'12px'}}}}</script>
+<style>
+/* Font fallbacks - using system fonts that are available offline */
+body {
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+h1, h2, h3, h4, h5, h6 {
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+font-weight: 600;
+}
+.logo {
+font-family: cursive, "Comic Sans MS", "Brush Script MT", fantasy;
+}
+
+/* Icon replacements using CSS symbols and Unicode */
+.ri-search-line::before { content: "🔍"; font-size: 14px; }
+.ri-menu-line::before { content: "☰"; font-size: 18px; }
+.ri-arrow-right-line::before { content: "→"; font-size: 14px; }
+.ri-calendar-line::before { content: "📅"; font-size: 12px; }
+.ri-time-line::before { content: "🕐"; font-size: 12px; }
+.ri-map-pin-line::before { content: "📍"; font-size: 12px; }
+.ri-facebook-fill::before { content: "f"; background: currentColor; color: white; border-radius: 2px; padding: 2px; font-weight: bold; }
+.ri-twitter-x-fill::before { content: "𝕏"; font-weight: bold; }
+.ri-instagram-fill::before { content: "📷"; }
+.ri-youtube-fill::before { content: "▶"; background: currentColor; color: white; border-radius: 2px; padding: 2px; }
+.ri-heart-line::before { content: "♡"; }
+.ri-chat-1-line::before { content: "💬"; font-size: 12px; }
+.ri-phone-line::before { content: "📞"; font-size: 14px; }
+.ri-mail-line::before { content: "✉"; font-size: 14px; }
+.ri-arrow-up-line::before { content: "↑"; font-size: 16px; font-weight: bold; }
+
+/* Remove default icon styling */
+:where([class^="ri-"])::before {
+content: attr(data-icon);
+font-family: inherit;
+font-style: normal;
+font-weight: normal;
+}
+
+.event-date {
+position: relative;
+overflow: hidden;
+}
+.event-date::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(74, 103, 65, 0.1);
+z-index: -1;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+input[type="number"] {
+-moz-appearance: textfield;
+}
+.student-spotlight-scroll::-webkit-scrollbar {
+height: 6px;
+}
+.student-spotlight-scroll::-webkit-scrollbar-track {
+background: #f1f1f1;
+border-radius: 10px;
+}
+.student-spotlight-scroll::-webkit-scrollbar-thumb {
+background: #D1DFB2;
+border-radius: 10px;
+}
+.student-spotlight-scroll::-webkit-scrollbar-thumb:hover {
+background: #4A6741;
+}
+.custom-checkbox {
+display: flex;
+align-items: center;
+cursor: pointer;
+}
+.custom-checkbox input {
+position: absolute;
+opacity: 0;
+cursor: pointer;
+height: 0;
+width: 0;
+}
+.checkmark {
+height: 20px;
+width: 20px;
+background-color: #fff;
+border: 2px solid #D1DFB2;
+border-radius: 4px;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.custom-checkbox input:checked ~ .checkmark {
+background-color: #D1DFB2;
+}
+.checkmark:after {
+content: "";
+display: none;
+}
+.custom-checkbox input:checked ~ .checkmark:after {
+display: block;
+width: 6px;
+height: 10px;
+border: solid white;
+border-width: 0 2px 2px 0;
+transform: rotate(45deg);
+}
+.hero-section {
+background-image: url('images/COMPOUND.jpg');
+background-size: cover;
+background-position: center;
+}
+</style>
+</head>
+<body class="bg-gray-50">
+<!-- Header -->
+<header class="sticky top-0 z-50 bg-white shadow-sm">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+        <div class="flex items-center">
+            <a href="https://readdy.ai/home/4a82f365-11eb-4d2e-a155-c3f400f1fb02/907f27e5-615c-4a88-93dc-b35558c795d6" data-readdy="true" class="logo text-2xl font-bold text-gray-800">Divine Grace School</a>
+        </div>
+<nav id="main-nav" class="hidden md:flex space-x-8">
+<a href="School-Home.html" class="font-medium text-gray-700 hover:text-primary transition-colors">Home</a>
+<a href="School-News.html" class="font-medium text-gray-700 hover:text-primary transition-colors">News</a>
+<a href="School-Events.html" class="font-medium text-gray-700 hover:text-primary transition-colors">Events</a>
+<a href="school-academics.html" class="font-medium text-primary hover:text-primary transition-colors">Academics</a>
+<a href="School-StudentLife.html" class="font-medium text-gray-700 hover:text-primary transition-colors">Student Life</a>
+<a href="School-Contact.html" class="font-medium text-gray-700 hover:text-primary transition-colors">Contact</a>
+</nav>
+        <div class="flex items-center space-x-4">
+            <div class="relative">
+                <input type="text" placeholder="Search..." class="py-2 pl-10 pr-4 w-40 lg:w-64 rounded-full text-sm border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                <div class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 flex items-center justify-center text-gray-400">
+                    <i class="ri-search-line"></i>
+                </div>
+            </div>
+            <button id="menu-button" class="md:hidden w-10 h-10 flex items-center justify-center text-gray-700">
+                <i class="ri-menu-line text-xl"></i>
+            </button>
+        </div>
+    </div>
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden"></div>
+    <!-- Mobile Menu -->
+    <nav id="mobile-menu" class="fixed top-0 right-0 w-64 h-full bg-white shadow-lg z-50 transform translate-x-full transition-transform duration-300 ease-in-out md:hidden">
+        <div class="p-4 flex justify-end">
+            <button id="close-menu-button" class="text-gray-700 text-2xl">&times;</button>
+        </div>
+        <ul class="flex flex-col p-4 space-y-4">
+            <li><a href="School-Home.html" class="block font-medium text-gray-700 hover:text-primary transition-colors py-2">Home</a></li>
+            <li><a href="School-News.html" class="block font-medium text-gray-700 hover:text-primary transition-colors py-2">News</a></li>
+            <li><a href="School-Events.html" class="block font-medium text-gray-700 hover:text-primary transition-colors py-2">Events</a></li>
+            <li><a href="school-academics.html" class="block font-medium text-gray-700 hover:text-primary transition-colors py-2">Academics</a></li>
+            <li><a href="School-StudentLife.html" class="block font-medium text-gray-700 hover:text-primary transition-colors py-2">Student Life</a></li>
+            <li><a href="School-Contact.html" class="block font-medium text-gray-700 hover:text-primary transition-colors py-2">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Breadcrumb -->
+<div class="bg-white border-b border-gray-200">
+    <div class="container mx-auto px-4 py-3">
+        <div class="flex items-center text-sm">
+            <a href="https://readdy.ai/home/4a82f365-11eb-4d2e-a155-c3f400f1fb02/907f27e5-615c-4a88-93dc-b35558c795d6" data-readdy="true" class="text-gray-500 hover:text-primary transition-colors">Home</a>
+            <div class="w-4 h-4 flex items-center justify-center text-gray-400 mx-1">
+                <i class="ri-arrow-right-s-line"></i>
+            </div>
+            <span class="text-gray-800 font-medium">Academics</span>
+        </div>
+    </div>
+</div>
+
+<!-- Hero Section -->
+<section class="py-16 bg-primary/10">
+    <div class="container mx-auto px-4 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Excellence in Education</h1>
+        <p class="text-lg text-gray-700 max-w-3xl mx-auto">Divine Grace School is committed to providing a rigorous and enriching academic experience that prepares students for success in college and beyond.</p>
+    </div>
+</section>
+
+<!-- Academic Programs Section -->
+<section class="py-12 bg-white">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Our Academic Programs</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Program Card 1: STEM -->
+            <div class="bg-white rounded shadow-md overflow-hidden transition-transform hover:shadow-lg hover:-translate-y-1">
+                <div class="h-48 overflow-hidden">
+                    <img src="images/GES .jpg" alt="STEM Program" class="w-full h-full object-cover object-center">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">GES Approved Curriculum</h3>
+                    <p class="text-gray-600 mb-4">Our robust Curriculum provided by GB ASSESSMENT fosters critical thinking and innovation through hands-on projects in Science, Computing, OWOP, and Creative Arts.</p>
+                    <a href="#" class="text-secondary font-medium hover:underline flex items-center">
+                        Learn More
+                        <div class="w-4 h-4 ml-1 flex items-center justify-center">
+                            <i class="ri-arrow-right-line"></i>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Program Card 2: Humanities -->
+            <div class="bg-white rounded shadow-md overflow-hidden transition-transform hover:shadow-lg hover:-translate-y-1">
+                <div class="h-48 overflow-hidden">
+                    <img src="images/performance.JPG" alt="Humanities Program" class="w-full h-full object-cover object-center">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Club and Extra-curriculum activities</h3>
+                    <p class="text-gray-600 mb-4">Learners are given the opportunities to explore and develop their God given Talents and not always have to prove their capabilities in Academics.</p>
+                    <a href="#" class="text-secondary font-medium hover:underline flex items-center">
+                        Learn More
+                        <div class="w-4 h-4 ml-1 flex items-center justify-center">
+                            <i class="ri-arrow-right-line"></i>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Program Card 3: World Languages -->
+            <div class="bg-white rounded shadow-md overflow-hidden transition-transform hover:shadow-lg hover:-translate-y-1">
+                <div class="h-48 overflow-hidden">
+                    <img src="images/hands on practical.jpg">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Hands on Practical Works</h3>
+                    <p class="text-gray-600 mb-4">Theory only builds the mental capacity and here at Divine Grace School, we develop your mental capabilities and skills to equip your for the job ready market.</p>
+                    <a href="#" class="text-secondary font-medium hover:underline flex items-center">
+                        Learn More
+                        <div class="w-4 h-4 ml-1 flex items-center justify-center">
+                            <i class="ri-arrow-right-line"></i>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Curriculum Overview Section -->
+<section class="py-12 bg-gray-50">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Curriculum Highlights</h2>
+        <div class="flex flex-col lg:flex-row gap-8 items-center">
+            <div class="lg:w-1/2">
+                <img src="images/GB ASSESSMENT.JPG" alt="Curriculum" class="rounded-lg shadow-lg w-full h-auto">
+            </div>
+            <div class="lg:w-1/2 space-y-6">
+                <div>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-2">Grade-A School Placement</h3>
+                    <p class="text-gray-700">Final Year students receive school placements in the the top tier high ranking Senior High Schools(SHS) in the country like Acrca Academy, Wesley Grammar, Mfantipim among others.</p>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-2">Strong Parent Teacher Relationship</h3>
+                    <p class="text-gray-700">Our curriculum is designed to include Parents in the Administration and Teaching process through open engagement in Parent-Teacher Fun Games, Open Day and Group Chats.</p>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-2">Experiential Learning</h3>
+                    <p class="text-gray-700">Beyond the classroom, students engage in real-world projects, field trips, and internships that provide practical experience and deeper understanding.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Faculty and Staff Section -->
+<section class="py-12 bg-white">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Meet Our Dedicated Faculty</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Faculty Card 1 -->
+
+            <!-- Faculty Card 2 -->
+            <div class="bg-white rounded shadow-md overflow-hidden text-center p-6">
+                <img src="images/mr larbi.jpg" alt="Mr. David Lee" class="w-45 h-45 rounded-full mx-auto mb-4 object-cover">
+                <h3 class="text-xl font-bold text-gray-800">Mr. Isaac Larbi</h3>
+                <p class="text-primary font-medium mb-2">Head of Finance and Administration</p>
+                <p class="text-gray-600 text-sm">Mr. Isaac brings to the special accounting skills to make sure the the school runs efficiently and all Administration works are done with prompt skills leaving room for no or minimum error.</p>
+            </div>
+            <!-- Faculty Card 3 -->
+            <div class="bg-white rounded shadow-md overflow-hidden text-center p-6">
+                <img src="images/Benjamin.png" alt="Ms. Sarah Kim" class="w-45 h-45 rounded-full mx-auto mb-4 object-cover">
+                <h3 class="text-xl font-bold text-gray-800">Mr. Sampson Asante</h3>
+                <p class="text-primary font-medium mb-2">Headmaster and Head of Science Department</p>
+                <p class="text-gray-600 text-sm">Mr Sampson brings to light the effortless and swift handling of the labour resource of the school ensuring all academic work is done with prompt swiftness and efficiency.</p>
+            </div>
+            <!-- Faculty Card 4 -->
+            <div class="bg-white rounded shadow-md overflow-hidden text-center p-6">
+                <img src="images/Nkotokante INC squad-75.jpg" alt="Mr. Eric Akorli" class="w-45 h-45 rounded-full mx-auto mb-4 object-cover">
+                <h3 class="text-xl font-bold text-gray-800">Mr. Eric Akorli</h3>
+                <p class="text-primary font-medium mb-2">Assistant Headmaster and Head of Mathematics Department</p>
+                <p class="text-gray-600 text-sm">Mr. Eric Akorli is a dedicated and enthusiastic disciplinarian of our beloved school for both Teachers and students at large, he also doubles as the faculties best Mathematical skills to make calculating a joyous moment for every learner..</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Resources Section -->
+<section class="py-12 bg-primary/10">
+    <div class="container mx-auto px-4 text-center">
+        <h2 class="text-3xl font-bold text-gray-800 mb-8">Academic Resources</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-white rounded shadow-md p-6 flex flex-col items-center">
+                <div class="w-16 h-16 flex items-center justify-center bg-primary/20 rounded-full mb-4">
+                    <i class="ri-book-open-line text-3xl text-primary"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Library & Media Center</h3>
+                <p class="text-gray-600 mb-4">Access a vast collection of books, digital resources, and research tools to support your studies.</p>
+                <a href="#" class="text-secondary font-medium hover:underline">Explore Library</a>
+            </div>
+            <div class="bg-white rounded shadow-md p-6 flex flex-col items-center">
+                <div class="w-16 h-16 flex items-center justify-center bg-primary/20 rounded-full mb-4">
+                    <i class="ri-computer-line text-3xl text-primary"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Technology & Labs</h3>
+                <p class="text-gray-600 mb-4">State-of-the-art computer labs and science facilities provide hands-on learning opportunities.</p>
+                <a href="#" class="text-secondary font-medium hover:underline">View Facilities</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-gray-800 text-white pt-16 pb-8">
+<div class="container mx-auto px-4">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+<div>
+<a href="#" class="logo text-2xl font-bold text-white mb-4 inline-block">Divine Grace School</a>
+<p class="text-gray-300 mb-6">Inspiring excellence and nurturing futures since 2003. Committed to providing a comprehensive education that prepares students for success in college and beyond.</p>
+<div class="flex space-x-4">
+<a href="#" class="w-10 h-10 rounded-full border border-gray-600 flex items-center justify-center text-gray-300 hover:text-white hover:border-white transition-colors">
+<i class="ri-facebook-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 rounded-full border border-gray-600 flex items-center justify-center text-gray-300 hover:text-white hover:border-white transition-colors">
+<i class="ri-twitter-x-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 rounded-full border border-gray-600 flex items-center justify-center text-gray-300 hover:text-white hover:border-white transition-colors">
+<i class="ri-instagram-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 rounded-full border border-gray-600 flex items-center justify-center text-gray-300 hover:text-white hover:border-white transition-colors">
+<i class="ri-youtube-fill"></i>
+</a>
+</div>
+</div>
+<div>
+<h4 class="text-lg font-bold mb-4">Quick Links</h4>
+<ul class="space-y-2">
+<li><a href="#" class="text-gray-300 hover:text-white transition-colors">About Us</a></li>
+<li><a href="#" class="text-gray-300 hover:text-white transition-colors">Academics</a></li>
+<li><a href="#" class="text-gray-300 hover:text-white transition-colors">Admissions</a></li>
+<li><a href="#" class="text-gray-300 hover:text-white transition-colors">Athletics</a></li>
+<li><a href="#" class="text-gray-300 hover:text-white transition-colors">Arts</a></li>
+<li><a href="#" class="text-gray-300 hover:text-white transition-colors">Student Life</a></li>
+<li><a href="#" class="text-gray-300 hover:text-white transition-colors">Parent Resources</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-lg font-bold mb-4">Contact Us</h4>
+<ul class="space-y-3">
+<li class="flex">
+<div class="w-5 h-5 flex items-center justify-center mr-2 mt-1">
+<i class="ri-map-pin-line"></i>
+</div>
+<span class="text-gray-300">P.O Box WJ 145, Weija-Accra<br>SCC off Mallam Kasoa Highway</span>
+</li>
+<li class="flex">
+<div class="w-5 h-5 flex items-center justify-center mr-2">
+<i class="ri-phone-line"></i>
+</div>
+<span class="text-gray-300">020 798 5666 / 024 705 5879</span>
+</li>
+<li class="flex">
+<div class="w-5 h-5 flex items-center justify-center mr-2">
+<i class="ri-mail-line"></i>
+</div>
+<span class="text-gray-300">info@divinegraceschool.edu</span>
+</li>
+<li class="flex">
+<div class="w-5 h-5 flex items-center justify-center mr-2">
+<i class="ri-time-line"></i>
+</div>
+<span class="text-gray-300">Monday-Friday: 7:30 AM - 4:00 PM</span>
+</li>
+</ul>
+</div>
+<div>
+<h4 class="text-lg font-bold mb-4">Newsletter</h4>
+<p class="text-gray-300 mb-4">Subscribe to receive updates about school news and events.</p>
+<form class="space-y-3">
+<input type="email" placeholder="Your email address" class="w-full px-4 py-2 rounded bg-gray-700 border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+<button type="submit" class="w-full bg-primary text-gray-800 px-4 py-2 font-medium !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all">Subscribe</button>
+</form>
+</div>
+</div>
+<div class="pt-8 border-t border-gray-700 text-center text-gray-400 text-sm">
+<p>&copy; 2025 Divine Grace School. All rights reserved.</p>
+</div>
+</div>
+</footer>
+
+<!-- Back to Top Button -->
+<button id="backToTop" class="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-primary text-gray-800 shadow-lg flex items-center justify-center opacity-0 invisible transition-all duration-300">
+    <i class="ri-arrow-up-line text-xl"></i>
+</button>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Back to Top Button
+    const backToTopButton = document.getElementById('backToTop');
+    window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 300) {
+            backToTopButton.classList.remove('opacity-0', 'invisible');
+            backToTopButton.classList.add('opacity-100', 'visible');
+        } else {
+            backToTopButton.classList.remove('opacity-100', 'visible');
+            backToTopButton.classList.add('opacity-0', 'invisible');
+        }
+    });
+    
+    backToTopButton.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    // Mobile Menu Functionality (New Code)
+    const menuButton = document.getElementById('menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const closeMenuButton = document.getElementById('close-menu-button');
+    const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+
+    function openMobileMenu() {
+        mobileMenu.classList.remove('translate-x-full');
+        mobileMenu.classList.add('translate-x-0');
+        mobileMenuOverlay.classList.remove('hidden');
+        document.body.style.overflow = 'hidden'; // Prevent scrolling of main content
+    }
+
+    function closeMobileMenu() {
+        mobileMenu.classList.remove('translate-x-0');
+        mobileMenu.classList.add('translate-x-full');
+        mobileMenuOverlay.classList.add('hidden');
+        document.body.style.overflow = ''; // Re-enable scrolling
+    }
+
+    menuButton.addEventListener('click', openMobileMenu);
+    closeMenuButton.addEventListener('click', closeMobileMenu);
+    mobileMenuOverlay.addEventListener('click', closeMobileMenu); // Close when clicking outside
+});
+</script>
+</body>
+</html>
